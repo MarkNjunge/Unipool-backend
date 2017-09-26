@@ -1,0 +1,39 @@
+{
+  "name": "UniPool",
+  "version": "1.0.0",
+  "description": "Backend for university carpool system",
+  "main": "src/app.js",
+  "author": "Mark Njung'e",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/app.js",
+    "start-dev": "nodemon src/app.js"
+  },
+  "contributors": [
+    {
+      "name": "Mark Njung'e"
+    },
+    {
+      "name": "Mecolela Sichangi"
+    }
+  ],
+  "dependencies": {
+    "apollo-errors": "^1.5.1",
+    "apollo-resolvers": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "chalk": "^2.1.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.5",
+    "graphql": "^0.11.3",
+    "graphql-server-express": "^1.1.2",
+    "graphql-tools": "^1.2.3",
+    "ip": "^1.1.5",
+    "lodash": "^4.17.4",
+    "merge-graphql-schemas": "^1.1.4",
+    "mongoose": "^4.11.13"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-replace": "^0.6.1"
+  }
+}
