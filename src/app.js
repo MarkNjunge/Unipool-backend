@@ -10,6 +10,8 @@ const {
 
 require('dotenv').config()
 
+const Schema = require('./graphql/schema').schema
+
 // Get port from run command or default to 3000
 const PORT = process.argv[2] ? process.argv[2] : 3000
 
@@ -21,7 +23,7 @@ Promise.resolve()
     // Setup graphql
     app.use('/graphql', bodyParser.json(), graphqlExpress(() => ({
       formatError,
-      // schema: Schema
+      schema: Schema
     })))
   })
   .then(() => {

@@ -16,7 +16,7 @@ schema {
 `
 
 const schema = makeExecutableSchema({
-  typeDefs: mergeTypes([baseTypeDefs]),
+  typeDefs: mergeTypes([baseTypeDefs, UserTypeDefs]),
   resolvers
 })
 
