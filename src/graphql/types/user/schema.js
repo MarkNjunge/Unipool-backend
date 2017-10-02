@@ -1,4 +1,4 @@
-const _ = require('lodash')
+const _ = require('lodash');
 
 const types = `
 # A user of the system. Either a driver or a rider.
@@ -44,11 +44,11 @@ type Vehicle{
 }
 
 # Driver or rider in
-enum UserType{
+enum Role{
   DRIVER,
   RIDER
 }
-`
+`;
 
 const query = `
 type Query {
@@ -58,7 +58,7 @@ type Query {
   # Get a vehicle by it's registration number
   getVehicle(registrationNumber: String): Vehicle
 }
-`
+`;
 
 const mutation = `
 type Mutation {
@@ -68,7 +68,7 @@ type Mutation {
     studentNumber: Int!, 
     email: String!, 
     fullname: String!, 
-    userType: UserType!,
+    role: Role!,
     phone :Int!,
   ): String
 
@@ -78,7 +78,7 @@ type Mutation {
     studentNumber: Int, 
     email: String, 
     fullname:String,
-    userType: UserType
+    role: Role
     phone:Int
   ): String
   
@@ -88,8 +88,8 @@ type Mutation {
 
   deleteVehicle(userId: String!, registrationNumber: String!): String
 }
-`
+`;
 
 module.exports = {
   typeDefs: _.join([types, query, mutation])
-}
+};
