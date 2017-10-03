@@ -22,28 +22,13 @@ type User{
   phone: Int
 
   # Whether the user is a driver or a rider.
-  userType: UserType
+  role: Role
 
   # Vehicles added by the user.
   vehicles: [Vehicle]
 }
 
-# A vehicle owned by a user
-type Vehicle{
-  # The number plate of the car.
-  registrationNumber: String
-
-  # Make of the car. e.g. Toyota Prado.
-  make: String
-
-  # # Color of the car. In plain text e.g. Red.
-  color: String
-
-  # Seating capacity available for passengers.
-  capacity: Int
-}
-
-# Driver or rider in
+# Driver or rider
 enum Role{
   DRIVER,
   RIDER
@@ -81,12 +66,6 @@ type Mutation {
     role: Role
     phone:Int
   ): String
-  
-  addVehicle(userId: String!, registrationNumber: String!, make: String!, color: String!, capacity: Int!): String
-
-  updateVehicle(userId: String!, registrationNumber: String!, make: String, color: String, capacity: Int): String
-
-  deleteVehicle(userId: String!, registrationNumber: String!): String
 }
 `
 
