@@ -1,40 +1,37 @@
 const mongoose = require('mongoose');
-const user = require('./user');
 
-const VehicleSchema = new mongoose.Schema({
-    registrationNumber: String,
-    make: String,
-    color: String,
-    capacity: Number,
-    ownerId: String
+function _vehicles() {
+    this.schema = new mongoose.Schema({
+        registrationNumber: String,
+        make: String,
+        color: String,
+        capacity: Number,
+        ownerId: String
+    });
+    this.model = mongoose.model('vehicle', VehicleSchema);
+}
+
+const Vehicles = Object.create(_vehicles.prototype, {
+    add: async function (details) {
+        return await this.model.create(details);
+    },
+    get: function (details) {
+        return this.model.find(details)
+    },
+    update: function (details) {
+        if (details.hasOwnProperty('id')) {
+            let id = details.id;
+            delete details.id;
+            return this.model.findByIdAndUpdate(id, details)
+        } else {
+            throw new Error('Vehicle Id expected but none was found');
+        }
+    },
+    delete: function (vehicleId) {
+        return this.model.findByIdAndRemove(vehicleId);
+    }
 });
 
-const VehicleModel = mongoose.model('vehicle', VehicleSchema);
-
-async function addVehicle(details) {
-    return await VehicleModel.create(details)
-}
-
-/**
- * @param {Object} details an object containing the necessary details
- * */
-
-function getVehicle(details) {
-    if (typeof details !== 'object' && !Array.isArray(details)) {
-        throw new Error(`Received parameter of type ${typeof details} instead of Object`);
-    }
-    return VehicleModel.find(details)
-}
-
-/**
- * @param {String} id The vehicles Id
- * */
-
-function deleteVehicle(id) {
-    return VehicleModel.findByIdAndRemove(id);
-}
-
 module.exports = {
-    schema: VehicleSchema,
-    model: VehicleModel
+    Vehicles
 };

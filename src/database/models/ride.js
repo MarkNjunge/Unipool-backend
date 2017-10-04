@@ -4,48 +4,45 @@ const mongoose = require('mongoose');
 const user = require('./user');
 const vehicle = require('./vehicle');
 
-const RideSchema = new mongoose.Schema({
-    driver: user.schema,
-    users: [String],
-    vehicle: vehicle.schema,
-    region: String,
-    from: String,
-    departueTime: Date,
-    numberOfPassengers: Number,
-    arrived: Boolean
+function _rides() {
+    this.schema = new mongoose.Schema({
+        driver: user.schema,
+        users: [String],
+        vehicle: vehicle.schema,
+        region: String,
+        from: String,
+        departureTime: Date,
+        numberOfPassengers: Number,
+        arrived: Boolean
+    });
+    this.model = mongoose.model('ride', RideSchema);
+}
+
+const Rides = Object.create(_rides.prototype, {
+    byUser: function (userId) {
+        return this.model.find({user: userId});
+    },
+    byRegion: function (region) {
+        return this.model.find({region: region});
+    },
+    of: function (details) {
+        if (typeof details === 'object') {
+            return this.model.find(details);
+        } else {
+            throw new Error('Expected an object but received:', typeof details)
+        }
+    },
+    update: function (newVersion) {
+        if (newVersion.hasOwnProperty('id')) {
+            let id = newVersion.id;
+            delete newVersion.id;
+            return this.model.findByIdAndUpdate(id, newVersion)
+        } else {
+            throw new Error('Ride Id expected but none was found');
+        }
+    }
 });
 
-const RideModel = mongoose.model('ride', RideSchema);
-
-// get rides per user
-function getUserRides(userId) {
-    return RideModel.find({user: userId});
-}
-
-// get all rides from a particular region
-function getRegionalRides(region) {
-    return RideModel.find({region: region});
-}
-
-// get rides by departure time
-function getARide(options) {
-    return RideModel.find(options);
-}
-
-// update ride [complete, departure time]
-
-function updateRide(options) {
-    let id;
-    if (options.hasOwnProperty('id')) {
-        id = options.id;
-        return RideModel.findByIdAndUpdate(id, {options})
-    } else {
-        throw new Error('Ride Id expected but found none');
-    }
-}
-
-
 module.exports = {
-    schema: RideSchema,
-    model: RideModel
+    Rides
 };
