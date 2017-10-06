@@ -24,13 +24,15 @@
     "chalk": "^2.1.0",
     "dotenv": "^4.0.0",
     "express": "^4.15.5",
+    "geolib": "^2.0.23",
     "graphql": "^0.11.3",
     "graphql-server-express": "^1.1.2",
     "graphql-tools": "^1.2.3",
     "ip": "^1.1.5",
     "lodash": "^4.17.4",
     "merge-graphql-schemas": "^1.1.4",
-    "mongoose": "^4.11.13"
+    "mongoose": "^4.11.13",
+    "mosca": "^2.5.2"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
