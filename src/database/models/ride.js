@@ -3,17 +3,20 @@
 const mongoose = require('mongoose');
 const user = require('./user');
 const vehicle = require('./vehicle');
+const geolocation = require('./geolocation');
 
 function _rides() {
     this.schema = new mongoose.Schema({
+        _id: String,
         driver: user.schema,
-        users: [String],
+        passengers: [String],
         vehicle: vehicle.schema,
-        region: String,
-        from: String,
+        startLocation: geolocation.schema,
+        endLocation: geolocation.schema,
         departureTime: Date,
-        numberOfPassengers: Number,
-        arrived: Boolean
+        arrivalTime: Date,
+        passengerCount: Number,
+        completed: Boolean
     });
     this.model = mongoose.model('ride', RideSchema);
 }
