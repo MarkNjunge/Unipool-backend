@@ -2,7 +2,7 @@
 
 module.exports = {
     mongoConfig: {
-        url: 'mongodb://heroku_wbndnvpk:unipoolpass1@ds159254.mlab.com:59254/heroku_wbndnvpk'
+        url: 'mongodb://devTeam:devteampass@ds159254.mlab.com:59254/heroku_wbndnvpk'
     },
     mqttConfig: {
         port: 80
