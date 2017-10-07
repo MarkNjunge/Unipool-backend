@@ -11,10 +11,10 @@ function _geolocation() {
     this.model = mongoose.model('geolocation', GeolocationSchema);
 }
 
-const Geoloation = Object.create(_geolocation.prototype, {
+const Geolocation = Object.create(_geolocation.prototype, {
     
 });
 
 module.exports = {
-  Geoloation
+  Geolocation
 };
