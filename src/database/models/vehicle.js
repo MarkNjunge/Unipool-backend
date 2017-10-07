@@ -12,8 +12,8 @@ function _vehicles() {
 }
 
 const Vehicles = Object.create(_vehicles.prototype, {
-    add: async function (details) {
-        return await this.model.create(details);
+    add: function (details) {
+        return this.model.create(details);
     },
     get: function (details) {
         return this.model.find(details)
