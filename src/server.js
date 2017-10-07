@@ -10,6 +10,8 @@ const {
 
 require('dotenv').config();
 
+const {log} = require('./middleware/logger');
+
 const Database = require('./database');
 
 const Schema = require('./graphql/schema').schema;
@@ -43,12 +45,11 @@ Promise.resolve()
         })
     })
     .then(() => {
-        console.log(chalk.cyan('Starting server...'));
-
+        log(chalk.cyan('Starting server...'));
         app.listen(PORT, () => {
-            console.log(chalk.cyan(`Server successfully started on ${ip.address()}:${PORT}`))
+            log(`Server successfully started on ${ip.address()}:${PORT}`)
         })
     })
     .catch(reason => {
-        console.log(chalk.red('Failed to start: ' + reason))
+        log('Failed to start: ' + reason, true);
     });
