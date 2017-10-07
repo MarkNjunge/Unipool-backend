@@ -4,10 +4,10 @@ const types = `
 # A point on the map
 type Geolocation {
   # Latitude
-  lat: Int
+  lat: Float
 
   # Longitude
-  long: Int
+  long: Float
 
   # Descriptive name of the location
   region: String
@@ -17,7 +17,7 @@ type Geolocation {
 const query = `
 type Query{
   # Get the name of the region the coordinates are located
-  getRegion(lat: Int!, long: Int!): Geolocation
+  getRegion(lat: Float!, long: Float!): Geolocation
 }
 `
 
