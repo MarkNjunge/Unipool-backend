@@ -22,8 +22,8 @@ type Vehicle{
 
 const query = `
 type Query {
-  # Get a vehicle by it's registration number
-  getVehicle(registrationNumber: String): Vehicle
+  # Get a vehicle by it's registration number.
+  getVehicle(registrationNumber: String!): Vehicle
 }
 `
 
