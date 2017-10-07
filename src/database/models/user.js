@@ -21,8 +21,8 @@ function _users() {
 }
 
 const Users = Object.create(_users.prototype, {
-    add: async function (details) {
-        return await this.model.create(details);
+    add:  function (details) {
+        return this.model.create(details);
     },
     findOne: function (userId) {
         return this.model.findById(userId);
@@ -50,5 +50,5 @@ const Users = Object.create(_users.prototype, {
 });
 
 module.exports = {
-    Users
+    user: Users
 };

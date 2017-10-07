@@ -1,9 +1,9 @@
 "use strict";
 
 const mongoose = require('mongoose');
-const user = require('./user');
-const vehicle = require('./vehicle');
-const geolocation = require('./geolocation');
+const {user} = require('./user');
+const {vehicle} = require('./vehicle');
+const {geolocation} = require('./geolocation');
 
 function _rides() {
     this.schema = new mongoose.Schema({
