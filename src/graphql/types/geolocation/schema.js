@@ -15,7 +15,7 @@ type Geolocation {
 `
 
 const query = `
-type query{
+type Query{
   # Get the name of the region the coordinates are located
   getRegion(lat: Int!, long: Int!): Geolocation
 }
