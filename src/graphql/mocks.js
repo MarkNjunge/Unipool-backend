@@ -42,23 +42,6 @@ casual.define('ride', () => {
 const mocks = {
   String: () => 'value',
   Int: () => casual.integer(100000, 999999),
-  // Query: () => ({
-  //   author: (root, args) => {
-  //     return {
-  //       id:args.id,
-  //       firstName: args.firstName,
-  //       lastName: args.lastName,
-  //       email:args.email,
-  //       phone:args.phone
-  //     }
-  //   },
-  //   post: (root, args) => {
-  //     return {
-  //       id:args.id,
-  //       title: args.title
-  //     }
-  //   }
-  // }),
   Geolocation: () => (casual.geolocation),
   Ride: () => (casual.ride),
   User: () => (casual.user),
