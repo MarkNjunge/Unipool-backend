@@ -8,7 +8,7 @@ function _vehicles() {
         capacity: Number,
         ownerId: String
     });
-    this.model = mongoose.model('vehicle', VehicleSchema);
+    this.model = mongoose.model('vehicle', this.schema);
 }
 
 const Vehicles = Object.create(_vehicles.prototype, {

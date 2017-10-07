@@ -8,7 +8,7 @@ function _geolocation() {
         long: Number,
         regoin: String
     });
-    this.model = mongoose.model('geolocation', GeolocationSchema);
+    this.model = mongoose.model('geolocation', this.schema);
 }
 
 const Geolocation = Object.create(_geolocation.prototype, {

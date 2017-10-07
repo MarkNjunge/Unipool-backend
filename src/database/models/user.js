@@ -17,7 +17,7 @@ function _users() {
         role: {type: String, required: true, enum: ['DRIVER', 'RIDER', 'BOTH']},
         vehicles: [vehicle.schema]
     });
-    this.model = mongoose.model('User', UserSchema);
+    this.model = mongoose.model('User', this.schema);
 }
 
 const Users = Object.create(_users.prototype, {

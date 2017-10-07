@@ -18,7 +18,7 @@ function _rides() {
         passengerCount: Number,
         completed: Boolean
     });
-    this.model = mongoose.model('ride', RideSchema);
+    this.model = mongoose.model('ride', this.schema);
 }
 
 const Rides = Object.create(_rides.prototype, {
