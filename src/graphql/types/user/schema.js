@@ -68,8 +68,8 @@ type Mutation {
     fullname: String!, 
     gender: Gender,
     phone :Int!,
-    defaultLat: Int,
-    defaultLong: Int
+    defaultLat: Float!,
+    defaultLong: Float!,
     role: Role!,
   ): String
 
@@ -82,8 +82,8 @@ type Mutation {
     fullname:String,
     gender: Gender,
     phone:Int,
-    defaultLat: Int,
-    defaultLong: Int
+    defaultLat: Float,
+    defaultLong: Float,
     role: Role
   ): String
 }

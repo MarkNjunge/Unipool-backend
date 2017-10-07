@@ -52,10 +52,10 @@ type Mutation{
     driverId: String!, 
     passengers: [String]!, 
     vehicleRegNo: String!, 
-    startLat: Int!,
-    startLong: Int!,
-    endLat: Int!,
-    endLong: Int!
+    startLat: Float!,
+    startLong: Float!,
+    endLat: Float!,
+    endLong: Float!
   ): String
 
   # Mark an ongoing ride as completed.
