@@ -5,6 +5,7 @@ const connectOptions = {
     promiseLibrary: global.Promise,
     useMongoClient: true
 };
+const{log} = require('../middleware/logger');
 
 const {
     mongoConfig
@@ -21,12 +22,12 @@ function init() {
         });
 
         db.on('open', () => {
-            console.log('Mongo Connected');
+            log('Mongo Connected');
             resolve();
         });
 
         db.on('disconnected', () => {
-            console.log('Disconnected from mongo');
+            log('Disconnected from mongo', true);
         })
     })
 }
