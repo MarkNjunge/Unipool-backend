@@ -9,7 +9,7 @@ type Vehicle{
   # Make of the car. e.g. Toyota Prado.
   make: String
 
-  # # Color of the car. In plain text e.g. Red.
+  # Color of the car. In plain text e.g. Red.
   color: String
 
   # Seating capacity available for passengers.

@@ -21,6 +21,12 @@ type User{
   # Phone number of the user.
   phone: Int
 
+  # M or F
+  gender: Gender
+
+  # Default region the user lives
+  region: String
+
   # Whether the user is a driver or a rider.
   role: Role
 
@@ -32,6 +38,12 @@ type User{
 enum Role{
   DRIVER,
   RIDER
+}
+
+# Gender of the user
+enum Gender{
+  M,
+  F
 }
 `
 
