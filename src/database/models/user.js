@@ -50,5 +50,5 @@ const Users = Object.create(_users.prototype, {
 });
 
 module.exports = {
-    Users
+    user: Users
 };

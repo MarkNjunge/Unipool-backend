@@ -16,5 +16,5 @@ const Geolocation = Object.create(_geolocation.prototype, {
 });
 
 module.exports = {
-  Geolocation
+  geolocation: Geolocation
 };

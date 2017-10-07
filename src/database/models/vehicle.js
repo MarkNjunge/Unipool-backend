@@ -33,5 +33,5 @@ const Vehicles = Object.create(_vehicles.prototype, {
 });
 
 module.exports = {
-    Vehicles
+    vehicle: Vehicles
 };
