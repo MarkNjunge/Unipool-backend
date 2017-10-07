@@ -43,6 +43,12 @@ const Rides = Object.create(_rides.prototype, {
         } else {
             throw new Error('Ride Id expected but none was found');
         }
+    },
+    markComplete: function (rideId) {
+        return this.model.findByIdAndUpdate(rideId, {
+            completed: true,
+            arrivalTime: Date.now()
+        });
     }
 });
 
