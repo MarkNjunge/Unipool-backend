@@ -10,7 +10,9 @@ const {
 
 require('dotenv').config();
 
-const {log} = require('./middleware/logger');
+const {
+    log
+} = require('./middleware/logger');
 
 const Database = require('./database');
 

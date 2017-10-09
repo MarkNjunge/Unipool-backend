@@ -14,6 +14,7 @@ const VehicleTypeDefs = require('./types/vehicle/schema').typeDefs
 const RideTypeDefs = require('./types/ride/schema').typeDefs
 const GeolocationTypeDefs = require('./types/geolocation/schema').typeDefs
 
+
 const baseTypeDefs = `
 schema {
   query: Query
