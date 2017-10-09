@@ -5,9 +5,6 @@ const types = `
 type User{
   # Id of the user. From Firebase authentication.
   id: String
-  
-  # Whether the user account has been validated.
-  isValidated: Boolean
 
   # Student number of the user.
   studentNumber: Int
@@ -62,7 +59,6 @@ type Mutation {
   # Add a new user to the system
   addUser(
     id: String!, 
-    isValidated: Boolean!, # Will default to false if blank
     studentNumber: Int!, 
     email: String!, 
     fullname: String!, 
@@ -76,7 +72,6 @@ type Mutation {
   # Change a user's details
   updateUser(
     id: String!, 
-    isValidated: Boolean,
     studentNumber: Int, 
     email: String, 
     fullname:String,

@@ -6,7 +6,6 @@ const vehicle = require('./vehicle');
 function _users() {
     this.schema = new mongoose.Schema({
         _id: String,
-        isValidated: {type: Boolean, required: true},
         studentNumber: {type: Boolean, required: true},
         email: {type: String, required: true},
         gender: {type: String, required: true, enum: ['M', 'F']},
