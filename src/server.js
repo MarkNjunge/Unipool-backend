@@ -1,4 +1,5 @@
 const ip = require('ip');
+const path = require('path')
 const chalk = require('chalk');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -28,6 +29,12 @@ Promise.resolve()
         return Database.init();
     })
     .then(() => {
+        // Endpoint for docs
+        app.use('/docs', (req, res) => {
+            res.sendFile(path.join(__dirname, './public/documentation.html'))
+        })
+    })
+    .then(() => {
         // Setup graphql
         app.use('/graphql', bodyParser.json(), graphqlExpress(() => ({
             formatError,
@@ -43,7 +50,7 @@ Promise.resolve()
     .then(() => {
         // Redirect from index page to graphiql
         app.use('/', (req, res) => {
-            res.redirect('/graphiql')
+            res.sendFile(path.join(__dirname, './public/index.html'))
         })
     })
     .then(() => {
