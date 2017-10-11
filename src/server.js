@@ -48,7 +48,6 @@ Promise.resolve()
         }))
     })
     .then(() => {
-        // Redirect from index page to graphiql
         app.use('/', (req, res) => {
             res.sendFile(path.join(__dirname, './public/index.html'))
         })
