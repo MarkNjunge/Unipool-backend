@@ -1,20 +1,22 @@
-"use strict";
+'use strict'
 
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
+const geofence = require('../../middleware/geofence')
 
-function _geolocation() {
-    this.schema = new mongoose.Schema({
+const Geolocation = Object.create(null)
+
+Object.assign(Geolocation, {
+    schema: new mongoose.Schema({
         lat: Number,
         long: Number,
         regoin: String
-    });
-    this.model = mongoose.model('geolocation', this.schema);
-}
+    }),
+    model: mongoose.model('geolocation', this.schema),
+    getRegion: function (location) {
+        if (location.hasOwnProperty('lat') && location.hasOwnProperty('long')) {
+            return geofence(location)
+        }
+    }
+})
 
-const Geolocation = Object.create(_geolocation.prototype, {
-    
-});
-
-module.exports = {
-  geolocation: Geolocation
-};
+module.exports = Geolocation

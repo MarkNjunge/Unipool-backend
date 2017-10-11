@@ -1,10 +1,12 @@
-"use strict";
+'use strict'
 
-const mongoose = require('mongoose');
-const vehicle = require('./vehicle');
+const mongoose = require('mongoose')
+const vehicle = require('./vehicle')
 
-function _users() {
-    this.schema = new mongoose.Schema({
+const User = Object.create(null);
+
+Object.assign(User, {
+    schema: new mongoose.Schema({
         _id: String,
         studentNumber: {type: Boolean, required: true},
         email: {type: String, required: true},
@@ -15,39 +17,34 @@ function _users() {
         subRegion: {type: String, required: true},
         role: {type: String, required: true, enum: ['DRIVER', 'RIDER', 'BOTH']},
         vehicles: [vehicle.schema]
-    });
-    this.model = mongoose.model('User', this.schema);
-}
-
-const Users = Object.create(_users.prototype, {
-    add:  function (details) {
-        return this.model.create(details);
+    }),
+    model: mongoose.model('User', this.schema),
+    add: function (details) {
+        return this.model.create(details)
     },
     findOne: function (userId) {
-        return this.model.findById(userId);
+        return this.model.findById(userId)
     },
     findMany: function (details) {
-        return this.model.find(details);
+        return this.model.find(details)
     },
     getVehicles: async function (userId) {
         this.model.findById(userId).then(user => {
-            return user.vehicles;
+            return user.vehicles
         })
     },
     delete: function (userId) {
-        return this.model.findByIdAndRemove(userId);
+        return this.model.findByIdAndRemove(userId)
     },
     update: function (details) {
         if (details.hasOwnProperty('id')) {
-            let id = details.id;
-            delete details.id;
+            let id = details.id
+            delete details.id
             return this.model.findByIdAndUpdate(id, details)
         } else {
-            throw new Error('User Id expected but none was found');
+            throw new Error('User Id expected but none was found')
         }
     }
-});
+})
 
-module.exports = {
-    user: Users
-};
+module.exports = User;

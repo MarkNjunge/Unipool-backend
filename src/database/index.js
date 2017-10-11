@@ -5,7 +5,7 @@ const connectOptions = {
     promiseLibrary: global.Promise,
     useMongoClient: true
 };
-const{log} = require('../middleware/logger');
+const {log} = require('../middleware/logger');
 
 const {
     mongoConfig

@@ -1,37 +1,34 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-function _vehicles() {
-    this.schema = new mongoose.Schema({
+const Vehicle = Object.create(null)
+
+Object.assign(Vehicle, {
+    schema: new mongoose.Schema({
         registrationNumber: String,
         make: String,
         color: String,
         capacity: Number,
         ownerId: String
-    });
-    this.model = mongoose.model('vehicle', this.schema);
-}
-
-const Vehicles = Object.create(_vehicles.prototype, {
+    }),
+    model: mongoose.model('vehicle', this.schema),
     add: function (details) {
-        return this.model.create(details);
+        return this.model.create(details)
     },
     get: function (details) {
         return this.model.find(details)
     },
     update: function (details) {
         if (details.hasOwnProperty('id')) {
-            let id = details.id;
-            delete details.id;
+            let id = details.id
+            delete details.id
             return this.model.findByIdAndUpdate(id, details)
         } else {
-            throw new Error('Vehicle Id expected but none was found');
+            throw new Error('Vehicle Id expected but none was found')
         }
     },
     delete: function (vehicleId) {
-        return this.model.findByIdAndRemove(vehicleId);
+        return this.model.findByIdAndRemove(vehicleId)
     }
-});
+})
 
-module.exports = {
-    vehicle: Vehicles
-};
+module.exports = Vehicle
