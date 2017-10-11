@@ -1,12 +1,12 @@
-const {geolocation} = require('../../../database/models/geolocation');
+const {Geolocation} = require('../../../database/models/')
 const resolvers = {
-  Query: {
-    getRegion(_, args) {
-      return geolocation.getRegion(args);
+    Query: {
+        getRegion(_, args) {
+            return Geolocation.getRegion(args)
+        }
     }
-  }
 }
 
 module.exports = {
-  resolvers
+    resolvers
 }
