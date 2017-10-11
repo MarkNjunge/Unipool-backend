@@ -34,8 +34,10 @@ casual.define('vehicle', () => {
 
 casual.define('ride', () => {
   return {
-    _id: '507f1f77bcf86cd799439011'
-
+    _id: '507f1f77bcf86cd799439011',
+    depatureTime: casual.unix_time,
+    arrivalTime: casual.unix_time,
+    passengerCount: casual.integer(1, 4)
   }
 })
 
