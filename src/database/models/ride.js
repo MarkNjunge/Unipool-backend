@@ -1,24 +1,26 @@
-'use strict'
-
 const mongoose = require('mongoose')
-const {user} = require('./user')
-const {vehicle} = require('./vehicle')
-const {geolocation} = require('./geolocation')
+const user = require('./user')
+const vehicle = require('./vehicle')
+const geolocation = require('./geolocation')
+
+const RideSchema = mongoose.Schema({
+    _id: String,
+    driver: user.schema,
+    passengers: [String],
+    vehicle: vehicle.schema,
+    startLocation: geolocation.schema,
+    endLocation: geolocation.schema,
+    departureTime: Date,
+    arrivalTime: Date,
+    passengerCount: Number,
+    completed: Boolean
+})
+
+const RideModel = mongoose.model('ride', RideSchema)
 
 const Ride = {
-    schema: new mongoose.Schema({
-        _id: String,
-        driver: user.schema,
-        passengers: [String],
-        vehicle: vehicle.schema,
-        startLocation: geolocation.schema,
-        endLocation: geolocation.schema,
-        departureTime: Date,
-        arrivalTime: Date,
-        passengerCount: Number,
-        completed: Boolean
-    }),
-    model: mongoose.model('ride', this.schema),
+    schema: RideSchema,
+    model: RideModel,
     byUser: function (userId) {
         return this.model.find({user: userId})
     },

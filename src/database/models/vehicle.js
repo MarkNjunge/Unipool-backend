@@ -1,14 +1,17 @@
 const mongoose = require('mongoose')
 
+const VehicleSchema = mongoose.Schema({
+    registrationNumber: String,
+    make: String,
+    color: String,
+    capacity: Number,
+    ownerId: String
+})
+const VehicleModel = mongoose.model('Vehicle', VehicleSchema)
+
 const Vehicle = {
-    schema: new mongoose.Schema({
-        registrationNumber: String,
-        make: String,
-        color: String,
-        capacity: Number,
-        ownerId: String
-    }),
-    model: mongoose.model('vehicle', this.schema),
+    schema: VehicleSchema,
+    model: VehicleModel,
     add: function (details) {
         return this.model.create(details)
     },
