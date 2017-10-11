@@ -21,14 +21,16 @@ const RideModel = mongoose.model('ride', RideSchema)
 const Ride = {
     schema: RideSchema,
     model: RideModel,
+    add: function (details) {
+        return this.model.create(details)
+    },
     byUser: function (userId) {
         return this.model.find({user: userId})
     },
     byRegion: function (region) {
         return this.model.find({region: region})
-
     },
-    of: function (details) {
+    get: function (details) {
         if (typeof details === 'object') {
             return this.model.find(details)
         } else {
@@ -43,7 +45,6 @@ const Ride = {
         } else {
             throw new Error('Ride Id expected but none was found')
         }
-
     },
     markComplete: function (rideId) {
         return this.model.findByIdAndUpdate(rideId, {
