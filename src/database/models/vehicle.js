@@ -1,8 +1,6 @@
 const mongoose = require('mongoose')
 
-const Vehicle = Object.create(null)
-
-Object.assign(Vehicle, {
+const Vehicle = {
     schema: new mongoose.Schema({
         registrationNumber: String,
         make: String,
@@ -29,6 +27,6 @@ Object.assign(Vehicle, {
     delete: function (vehicleId) {
         return this.model.findByIdAndRemove(vehicleId)
     }
-})
+}
 
 module.exports = Vehicle

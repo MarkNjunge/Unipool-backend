@@ -3,9 +3,7 @@
 const mongoose = require('mongoose')
 const vehicle = require('./vehicle')
 
-const User = Object.create(null);
-
-Object.assign(User, {
+const User =  {
     schema: new mongoose.Schema({
         _id: String,
         studentNumber: {type: Boolean, required: true},
@@ -45,6 +43,6 @@ Object.assign(User, {
             throw new Error('User Id expected but none was found')
         }
     }
-})
+}
 
 module.exports = User;

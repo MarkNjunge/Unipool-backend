@@ -3,9 +3,7 @@
 const mongoose = require('mongoose')
 const geofence = require('../../middleware/geofence')
 
-const Geolocation = Object.create(null)
-
-Object.assign(Geolocation, {
+const Geolocation =  {
     schema: new mongoose.Schema({
         lat: Number,
         long: Number,
@@ -17,6 +15,6 @@ Object.assign(Geolocation, {
             return geofence(location)
         }
     }
-})
+}
 
 module.exports = Geolocation
