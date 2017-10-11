@@ -9,7 +9,7 @@ const{log} = require('../middleware/logger');
 
 const {
     mongoConfig
-} = require('../../config');
+} = require('../config');
 
 function init() {
     return new Promise((resolve, reject) => {
