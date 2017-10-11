@@ -27,7 +27,7 @@ const schema = makeExecutableSchema({
   resolvers
 })
 
-addMockFunctionsToSchema({schema, mocks})
+// addMockFunctionsToSchema({schema, mocks})
 
 module.exports = {
   schema

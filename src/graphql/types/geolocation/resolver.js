@@ -1,7 +1,8 @@
+const {geolocation} = require('../../../database/models/geolocation');
 const resolvers = {
   Query: {
     getRegion(_, args) {
-      return null
+      return geolocation.getRegion(args);
     }
   }
 }

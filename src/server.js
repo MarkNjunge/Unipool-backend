@@ -1,32 +1,32 @@
-const ip = require('ip');
+const ip = require('ip')
 const path = require('path')
-const chalk = require('chalk');
-const express = require('express');
-const bodyParser = require('body-parser');
-const formatError = require('apollo-errors').formatError;
+const chalk = require('chalk')
+const express = require('express')
+const bodyParser = require('body-parser')
+const formatError = require('apollo-errors').formatError
 const {
     graphqlExpress,
     graphiqlExpress
-} = require('graphql-server-express');
+} = require('graphql-server-express')
 
-require('dotenv').config();
+require('dotenv').config()
 
 const {
     log
-} = require('./middleware/logger');
+} = require('./middleware/logger')
 
-const Database = require('./database');
+const Database = require('./database')
 
-const Schema = require('./graphql/schema').schema;
+const Schema = require('./graphql/schema').schema
 
 // Get port from run command or default to 3000
-const PORT = process.argv[2] ? process.argv[2] : 3000;
+const PORT = process.argv[2] ? process.argv[2] : 3000
 
-const app = express();
+const app = express()
 
 Promise.resolve()
     .then(() => {
-        return Database.init();
+        return Database.init()
     })
     .then(() => {
         // Endpoint for docs
@@ -53,11 +53,11 @@ Promise.resolve()
         })
     })
     .then(() => {
-        log(chalk.cyan('Starting server...'));
+        log(chalk.cyan('Starting server...'))
         app.listen(PORT, () => {
             log(`Server successfully started on ${ip.address()}:${PORT}`)
         })
     })
     .catch(reason => {
-        log('Failed to start: ' + reason, true);
-    });
+        log('Failed to start: ' + reason, true)
+    })

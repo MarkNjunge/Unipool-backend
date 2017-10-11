@@ -1,5 +1,5 @@
 "use strict";
-const env = require('dotenv').config();
+const env = require('dotenv');
 const chalk = require('chalk');
 
 function logger() {
