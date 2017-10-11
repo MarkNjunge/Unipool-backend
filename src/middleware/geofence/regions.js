@@ -53,7 +53,6 @@ module.exports = [{
             "latitude": -1.3122193288979696,
             "longitude": 36.829931258107536
         }
-
     ]
 },
     {

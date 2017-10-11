@@ -17,9 +17,9 @@ const location3 = {
     longitude: 36.813875
 }
 
-getRegion(location1)
-getRegion(location2)
-getRegion(location3)
+// getRegion(location1)
+// getRegion(location2)
+// getRegion(location3)
 
 function getRegion(location) {
     let currentRegion
