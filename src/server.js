@@ -17,7 +17,7 @@ const {
 
 const Database = require('./database')
 
-const Schema = require('./graphql/schema').schema
+const Schema = require('./graphql/schema')
 
 // Get port from run command or default to 3000
 const PORT = process.argv[2] ? process.argv[2] : 3000

@@ -9,10 +9,10 @@ const {
 const mocks = require('./mocks')
 
 const resolvers = require('./resolver')
-const UserTypeDefs = require('./types/user/schema').typeDefs
-const VehicleTypeDefs = require('./types/vehicle/schema').typeDefs
-const RideTypeDefs = require('./types/ride/schema').typeDefs
-const GeolocationTypeDefs = require('./types/geolocation/schema').typeDefs
+const UserTypeDefs = require('./types/user/schema')
+const VehicleTypeDefs = require('./types/vehicle/schema')
+const RideTypeDefs = require('./types/ride/schema')
+const GeolocationTypeDefs = require('./types/geolocation/schema')
 
 
 const baseTypeDefs = `
@@ -29,6 +29,4 @@ const schema = makeExecutableSchema({
 
 // addMockFunctionsToSchema({schema, mocks})
 
-module.exports = {
-  schema
-}
+module.exports = schema

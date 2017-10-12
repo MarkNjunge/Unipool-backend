@@ -84,6 +84,4 @@ type Mutation {
 }
 `
 
-module.exports = {
-  typeDefs: _.join([types, query, mutation])
-}
+module.exports = _.join([types, query, mutation])
