@@ -1,6 +1,5 @@
 const ip = require('ip')
 const path = require('path')
-const chalk = require('chalk')
 const express = require('express')
 const bodyParser = require('body-parser')
 const formatError = require('apollo-errors').formatError
@@ -11,9 +10,7 @@ const {
 
 require('dotenv').config()
 
-const {
-    log
-} = require('./middleware/logger')
+const logger = require('./middleware/logger')
 
 const Database = require('./database')
 
@@ -53,11 +50,11 @@ Promise.resolve()
         })
     })
     .then(() => {
-        log(chalk.cyan('Starting server...'))
+        logger.info('Starting server...')
         app.listen(PORT, () => {
-            log(`Server successfully started on ${ip.address()}:${PORT}`)
+            logger.info(`Server successfully started on ${ip.address()}:${PORT}`)
         })
     })
     .catch(reason => {
-        log('Failed to start: ' + reason, true)
+        logger.error('Failed to start: ' + reason, true)
     })
