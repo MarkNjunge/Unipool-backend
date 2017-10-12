@@ -6,7 +6,7 @@ const geofence = require('../../middleware/geofence')
 const GeoSchema = mongoose.Schema({
     lat: Number,
     long: Number,
-    regoin: String
+    region: String
 })
 
 const GeoModel = mongoose.model('Geolocation', GeoSchema)

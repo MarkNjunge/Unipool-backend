@@ -1,15 +1,15 @@
 const mongoose = require('mongoose')
 const user = require('./user')
 const vehicle = require('./vehicle')
-const geolocation = require('./geolocation')
+const geoLocation = require('./geolocation')
 
 const RideSchema = mongoose.Schema({
     _id: String,
     driver: user.schema,
     passengers: [String],
     vehicle: vehicle.schema,
-    startLocation: geolocation.schema,
-    endLocation: geolocation.schema,
+    startLocation: geoLocation.schema,
+    endLocation: geoLocation.schema,
     departureTime: Date,
     arrivalTime: Date,
     passengerCount: Number,
