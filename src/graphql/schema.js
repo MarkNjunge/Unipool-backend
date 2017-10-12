@@ -8,7 +8,7 @@ const {
 
 const mocks = require('./mocks')
 
-const resolvers = require('./resolver').resolver
+const resolvers = require('./resolver')
 const UserTypeDefs = require('./types/user/schema').typeDefs
 const VehicleTypeDefs = require('./types/vehicle/schema').typeDefs
 const RideTypeDefs = require('./types/ride/schema').typeDefs
