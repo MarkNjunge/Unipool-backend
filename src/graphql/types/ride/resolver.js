@@ -1,10 +1,12 @@
+const {Ride} = require('../../../database/models');
+
 const resolvers = {
   Query: {
     getRide(_, args) {
-      return null
+      return Ride.get(args)
     },
     getAllRides(_, args) {
-      return null
+      return Ride.get({})
     }
   },
   Mutation: {
