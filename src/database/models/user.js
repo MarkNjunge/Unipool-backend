@@ -10,9 +10,6 @@ const UserSchema = mongoose.Schema({
     gender: {type: String, required: true, enum: ['M', 'F']},
     fullName: {type: String, required: true},
     phone: {type: Number, required: true},
-    region: {type: String, required: true},
-    subRegion: {type: String, required: true},
-    role: {type: String, required: true, enum: ['DRIVER', 'RIDER', 'BOTH']},
     vehicles: [vehicle.schema]
 })
 

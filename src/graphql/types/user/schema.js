@@ -21,20 +21,11 @@ type User{
   # M or F
   gender: Gender
 
-  # Default location of the user.
-  location: Geolocation
-
-  # Whether the user is a driver or a rider.
-  role: Role
-
   # Vehicles added by the user.
   vehicles: [Vehicle]
-}
 
-# Driver or rider
-enum Role{
-  DRIVER,
-  RIDER
+  # Whether the user can act as a driver. True if they have at least one vehicle.
+  canDrive: Boolean
 }
 
 # Gender of the user
@@ -63,10 +54,7 @@ type Mutation {
     email: String!, 
     fullname: String!, 
     gender: Gender,
-    phone :Int!,
-    defaultLat: Float!,
-    defaultLong: Float!,
-    role: Role!,
+    phone :Int!
   ): String
 
   # Change a user's details
@@ -76,10 +64,7 @@ type Mutation {
     email: String, 
     fullname:String,
     gender: Gender,
-    phone:Int,
-    defaultLat: Float,
-    defaultLong: Float,
-    role: Role
+    phone:Int
   ): String
 }
 `
