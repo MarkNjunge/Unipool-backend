@@ -23,9 +23,6 @@ type User{
 
   # Vehicles added by the user.
   vehicles: [Vehicle]
-
-  # Whether the user can act as a driver. True if they have at least one vehicle.
-  canDrive: Boolean
 }
 
 # Gender of the user
