@@ -4,7 +4,7 @@ const types = `
 # A user of the system. Either a driver or a rider.
 type User{
   # Id of the user. From Firebase authentication.
-  id: String
+  _id: String
 
   # Student number of the user.
   studentNumber: Int
