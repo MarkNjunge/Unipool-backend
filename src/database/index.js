@@ -13,8 +13,8 @@ const {
 
 function init() {
     return new Promise((resolve, reject) => {
-        const mongoUrl = mongoConfig.localUrl
-        // const mongoUrl = mongoConfig.url
+        // const mongoUrl = mongoConfig.localUrl
+        const mongoUrl = mongoConfig.url
         mongoose.connect(mongoUrl, connectOptions)
         const db = mongoose.connection
 
