@@ -1,8 +1,8 @@
 'use strict'
 
 const mongoose = require('mongoose')
+mongoose.Promise = require('bluebird')
 const connectOptions = {
-    promiseLibrary: global.Promise,
     useMongoClient: true
 }
 const logger = require('../middleware/logger')
@@ -34,6 +34,5 @@ function init() {
 }
 
 module.exports = {
-    init,
-
+    init
 }

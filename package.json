@@ -21,6 +21,7 @@
   "dependencies": {
     "apollo-errors": "^1.5.1",
     "apollo-resolvers": "^1.0.3",
+    "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "casual": "^1.5.17",
     "chalk": "^2.1.0",
