@@ -4,7 +4,7 @@ const types = `
 # A user of the system. Either a driver or a rider.
 type User{
   # Id of the user. From Firebase authentication.
-  id: String
+  _id: String
 
   # Student number of the user.
   studentNumber: Int
@@ -13,7 +13,7 @@ type User{
   email: String
 
   # Full name of the user.
-  fullname: String
+  fullName: String
 
   # Phone number of the user.
   phone: Int
@@ -46,23 +46,28 @@ const mutation = `
 type Mutation {
   # Add a new user to the system
   addUser(
-    id: String!, 
+    _id: String!, 
     studentNumber: Int!, 
     email: String!, 
-    fullname: String!, 
+    fullName: String!, 
     gender: Gender,
     phone :Int!
   ): String
 
   # Change a user's details
   updateUser(
-    id: String!, 
+    _id: String!, 
     studentNumber: Int, 
     email: String, 
-    fullname:String,
+    fullName:String,
     gender: Gender,
     phone:Int
   ): String
+  
+  # Delete a User
+  deleteUser(
+    _id: String!
+  ): Boolean
 }
 `
 
