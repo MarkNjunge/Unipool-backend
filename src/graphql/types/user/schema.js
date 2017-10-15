@@ -49,7 +49,7 @@ type Mutation {
     id: String!, 
     studentNumber: Int!, 
     email: String!, 
-    fullname: String!, 
+    fullName: String!, 
     gender: Gender,
     phone :Int!
   ): String
