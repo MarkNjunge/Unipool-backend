@@ -46,7 +46,7 @@ const mutation = `
 type Mutation {
   # Add a new user to the system
   addUser(
-    id: String!, 
+    _id: String!, 
     studentNumber: Int!, 
     email: String!, 
     fullName: String!, 
