@@ -63,6 +63,11 @@ type Mutation {
     gender: Gender,
     phone:Int
   ): String
+  
+  # Delete a User
+  deleteUser(
+    _id: String!
+  ): Boolean
 }
 `
 

@@ -1,20 +1,25 @@
+const {User} = require('../../../database/models')
+
 const resolvers = {
-  Query: {
-    getUser(_, args) {
-      return null
+    Query: {
+        getUser(_, args) {
+            return User.find(args.userId)
+        },
+        getVehicle(_, args) {
+            return User.getVehicles(args.registrationNumber)
+        }
     },
-    getVehicle(_, args) {
-      return null
+    Mutation: {
+        addUser(_, args) {
+            return User.add(args)
+        },
+        updateUser(_, args) {
+            return User.update(args)
+        },
+        deleteUser(_, args) {
+            return User.delete(args._id)
+        }
     }
-  },
-  Mutation: {
-    addUser(_, args) {
-      return null
-    },
-    updateUser(_, args) {
-      return null
-    }
-  }
 }
 
 module.exports = resolvers

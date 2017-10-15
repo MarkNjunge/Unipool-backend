@@ -5,7 +5,7 @@ const vehicle = require('./vehicle')
 
 const UserSchema = mongoose.Schema({
     _id: String,
-    studentNumber: {type: Boolean, required: true},
+    studentNumber: {type: Number, required: true},
     email: {type: String, required: true},
     gender: {type: String, required: true, enum: ['M', 'F']},
     fullName: {type: String, required: true},
@@ -13,7 +13,7 @@ const UserSchema = mongoose.Schema({
     vehicles: [vehicle.schema]
 })
 
-const UserModel = mongoose.model('User', UserSchema);
+const UserModel = mongoose.model('User', UserSchema)
 
 const User = {
     schema: UserSchema,
@@ -21,11 +21,8 @@ const User = {
     add: function (details) {
         return this.model.create(details)
     },
-    findOne: function (userId) {
+    find: function (userId) {
         return this.model.findById(userId)
-    },
-    findMany: function (details) {
-        return this.model.find(details)
     },
     getVehicles: function (userId) {
         return new Promise((resolve, reject) => {
@@ -40,13 +37,12 @@ const User = {
         return this.model.findByIdAndRemove(userId)
     },
     update: function (details) {
-        if (details.hasOwnProperty('id')) {
-            let id = details.id
-            delete details.id
+        if (details._id) {
+            let id = details._id
+            delete details._id
             return this.model.findByIdAndUpdate(id, details)
-        } else {
-            throw new Error('User Id expected but none was found')
         }
+        throw new Error('User Id (_id), expected but none was found')
     }
 }
 
