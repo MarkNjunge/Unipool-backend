@@ -1,6 +1,15 @@
 const _ = require('lodash')
 
 const types = `
+# A point on the map
+  type GeoLocation {
+  # Latitude
+   latitude: Float!
+
+  # Longitude
+   longitude: Float!
+}
+
 # A carpool ride
 type Ride {
   # id of the ride.
@@ -33,15 +42,6 @@ type Ride {
   # Whether or not the ride has been completed.
   completed: Boolean
 }
-
- # A point on the map
-  type GeoLocation {
-  # Latitude
-   latitude: Float!
-
-  # Longitude
-   longitude: Float!
-}
 `
 
 const query = `
@@ -58,14 +58,19 @@ type Query{
 `
 
 const mutation = `
+input GeoLoc {
+    latitude: Float!
+    longitude: Float!
+}
+
 type Mutation{
   # Add a new ride.
   addRide(
     driverId: String!, 
     passengers: [String]!, 
     vehicleRegNo: String!, 
-    startLocation: GeoLocation!,
-    endLocation: GeoLocation!
+    startLocation: GeoLoc!,
+    endLocation: GeoLoc!
   ): String
 
   # Mark an ongoing ride as completed.
