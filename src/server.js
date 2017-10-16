@@ -8,8 +8,6 @@ const {
     graphiqlExpress
 } = require('graphql-server-express')
 
-require('dotenv').config()
-
 const logger = require('./middleware/logger')
 
 const Database = require('./database')

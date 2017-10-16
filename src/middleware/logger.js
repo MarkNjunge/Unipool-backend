@@ -1,4 +1,3 @@
-const env = require('dotenv')
 const chalk = require('chalk')
 
 // function logger() {
