@@ -13,7 +13,7 @@ const resolvers = {
         }
     },
     Mutation: {
-        addRide(_, args) {
+        startRide(_, args) {
             return Ride.add(args)
         },
         markRideAsCompleted(_, args) {
