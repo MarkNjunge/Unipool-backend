@@ -16,13 +16,13 @@ type Ride {
   vehicle: Vehicle
 
   # The location the ride was from.
-  startLocation: Geolocation
+  startLocation: GeoLocation
 
   # The location the ride was to.
-  endLocation: Geolocation
+  endLocation: GeoLocation
 
   # The time the ride started.
-  depatureTime: Int
+  departureTime: Int
 
   # The time the ride ended.
   arrivalTime: Int
@@ -33,6 +33,15 @@ type Ride {
   # Whether or not the ride has been completed.
   completed: Boolean
 }
+
+ # A point on the map
+  type GeoLocation {
+  # Latitude
+   latitude: Float!
+
+  # Longitude
+   longitude: Float!
+}
 `
 
 const query = `
@@ -40,6 +49,9 @@ type Query{
   # Get a ride by its id
   getRide(rideId: String!): Ride
 
+   # Get all the rides a user has been on
+  getRidesByUser(userId: String!): Ride 
+    
   # Get all rides based on parameters.
   getAllRides(driverId: String, passengerId: String, vehicleRegNo: String, region: String, completed: Boolean): [Ride]
 }
@@ -52,16 +64,14 @@ type Mutation{
     driverId: String!, 
     passengers: [String]!, 
     vehicleRegNo: String!, 
-    startLat: Float!,
-    startLong: Float!,
-    endLat: Float!,
-    endLong: Float!
+    startLocation: GeoLocation!,
+    endLocation: GeoLocation!
   ): String
 
   # Mark an ongoing ride as completed.
   markRideAsCompleted(
-    arrivalTime: Int!
-  ): String
+    _id: String!
+  ): Boolean
 }
 `
 

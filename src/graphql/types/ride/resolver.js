@@ -1,22 +1,25 @@
-const {Ride} = require('../../../database/models');
+const {Ride} = require('../../../database/models')
 
 const resolvers = {
-  Query: {
-    getRide(_, args) {
-      return Ride.get(args)
+    Query: {
+        getRide(_, args) {
+            return Ride.get(args)
+        },
+        getRidesByUser(_, args) {
+            return Ride.byUser(args)
+        },
+        getAllRides(_, args) {
+            return Ride.get(args)
+        }
     },
-    getAllRides(_, args) {
-      return Ride.get({})
+    Mutation: {
+        addRide(_, args) {
+            return Ride.add(args)
+        },
+        markRideAsCompleted(_, args) {
+            return Ride.isComplete(args._id)
+        }
     }
-  },
-  Mutation: {
-    addRide(_, args) {
-      return null
-    },
-    markRideAsCompleted(_, args) {
-      return null
-    }
-  }
 }
 
 module.exports = resolvers
