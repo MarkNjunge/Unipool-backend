@@ -1,1 +1,1 @@
-web: node src/server.js $PORT
+web: npm run start-deploy $PORT
