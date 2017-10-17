@@ -3,7 +3,7 @@
 module.exports = {
     mongoConfig: {
         url: 'mongodb://devTeam:devteampass@ds159254.mlab.com:59254/heroku_wbndnvpk',
-        localUrl: 'mongodb://localhost:27017'
+        localUrl: 'mongodb://localhost:27017/unipool'
     },
     mqttConfig: {
         port: 80
