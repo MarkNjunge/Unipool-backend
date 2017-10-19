@@ -6,9 +6,9 @@
   "author": "Mark Njung'e",
   "license": "MIT",
   "scripts": {
-    "start": "set ENVIRONMENT=development && node src/server.js",
-    "start-live": "set ENVIRONMENT=development && nodemon src/server.js",
-    "start-deploy": "set ENVIRONMENT=production && node src/server.js",
+    "start": "set ENVIRONMENT=development&& node src/server.js",
+    "start-live": "set ENVIRONMENT=development&& nodemon src/server.js",
+    "start-deploy": "set ENVIRONMENT=production&& node src/server.js",
     "build": "gulp"
   },
   "contributors": [
