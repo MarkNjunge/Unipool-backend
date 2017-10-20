@@ -4,9 +4,6 @@ const resolvers = {
     Query: {
         getVehicle(_, args) {
             return Vehicle.find(args)
-        },
-        owner(val) {
-            return User.find(val)
         }
     },
     Mutation: {
