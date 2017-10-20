@@ -16,6 +16,11 @@ const resolvers = {
         deleteVehicle(_, args) {
             return null
         }
+    },
+    Vehicle: {
+        owner(val) {
+            return User.find(val.userId)
+        }
     }
 }
 

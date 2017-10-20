@@ -24,6 +24,8 @@ const query = `
 type Query {
   # Get a vehicle by it's registration number.
   getVehicle(registrationNumber: String!): Vehicle
+  
+  owner(userId: String!): User
 }
 `
 

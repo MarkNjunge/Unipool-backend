@@ -16,7 +16,6 @@ const Vehicle = {
         return this.model.create(details)
     },
     find: function (arg) {
-        this.model.find(arg).then((res) => console.log(res))
         return this.model.findOne(arg)
     },
     update: function (details) {
