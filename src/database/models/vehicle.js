@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 
 const VehicleSchema = mongoose.Schema({
-    registrationNumber: String,
+    registrationNumber: {type: String, required: true, unique: true},
+    userId: {type: String, required: true},
     make: String,
     color: String,
     capacity: Number,
-    ownerId: String
 })
 const VehicleModel = mongoose.model('Vehicle', VehicleSchema)
 
@@ -15,14 +15,13 @@ const Vehicle = {
     add: function (details) {
         return this.model.create(details)
     },
-    get: function (details) {
-        return this.model.find(details)
+    find: function (arg) {
+        this.model.find(arg).then((res) => console.log(res))
+        return this.model.find(arg)
     },
     update: function (details) {
-        if (details.hasOwnProperty('id')) {
-            let id = details.id
-            delete details.id
-            return this.model.findByIdAndUpdate(id, details)
+        if (details.hasOwnProperty('userId')) {
+            return this.model.findByIdAndUpdate(details.userId, details)
         } else {
             throw new Error('Vehicle Id expected but none was found')
         }
