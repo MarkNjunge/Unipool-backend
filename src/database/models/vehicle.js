@@ -17,7 +17,7 @@ const Vehicle = {
     },
     find: function (arg) {
         this.model.find(arg).then((res) => console.log(res))
-        return this.model.find(arg)
+        return this.model.findOne(arg)
     },
     update: function (details) {
         if (details.hasOwnProperty('userId')) {
