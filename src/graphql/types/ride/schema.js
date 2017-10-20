@@ -25,10 +25,12 @@ type Ride {
   vehicle: Vehicle
 
   # The location the ride was from.
-  startLocation: Geopoint
-
+  startLatitude: Float!
+  startLongitude: Float!
+  
   # The location the ride was to.
-  endLocation: Geopoint
+  endLatitude: Float!
+  endLongitude: Float!
 
   # Pickups done during the ride.
   pickUps: [Pickup]
@@ -40,15 +42,6 @@ type Ride {
   completed: Boolean
 }
 
-# A point on the map.
-type Geopoint {
-  # Latitude
-  latitude: Float!
-
-  # Longitude
-  longitude: Float!
-}
-
 # Details for a passenger picked up during a ride.
 type Pickup {
   # The user
@@ -58,7 +51,8 @@ type Pickup {
   time: Int
 
   # The location
-  location: Geopoint
+  latitude: Float!
+  longitude: Float!
 }
 `
 
@@ -70,32 +64,37 @@ type Query{
    # Get all the rides a user has been on
   getRidesByUser(userId: String!): Ride 
     
-  # Get all rides based on parameters.
-  getAllRides(driverId: String, passengerId: String, vehicleRegNo: String, region: String, completed: Boolean): [Ride]
+   # Get all rides based on parameters.
+  getAllRides(driverId: String,
+       passengerId: String,
+       vehicleRegNo: String, 
+       region: String,
+       completed: Boolean): [Ride]
+   # Obtain the drivers details 
+  driver(driverId: String!): User
+  # Obtain the vehicles details
+  vehicle(vehicleRegNo: String!): Vehicle
 }
 `
 
 const mutation = `
-input GeoLoc {
-    latitude: Float!
-    longitude: Float!
-}
-
 type Mutation{
   # Add a new ride.
   startRide(
     driverId: String!,
     vehicleRegNo: String!, 
     startLatitude: Float!,
-    startLongitude: Float!
+    startLongitude: Float!,
+    departureTime: Int!
   ): String
 
-  # Add a user as picked up
+  # Add a user to pick up
   addPickup(
     rideId: String!,
     userId: String!
     latitude: Float!,
-    longitude: Float!
+    longitude: Float!,
+    time: Int!
   ): String
 
   # Mark an ongoing ride as completed.

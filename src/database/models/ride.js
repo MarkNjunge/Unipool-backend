@@ -1,19 +1,32 @@
 const mongoose = require('mongoose')
 const user = require('./user')
-const vehicle = require('./vehicle')
 const geoLocation = require('./geolocation')
 
+const PickUp = mongoose.Schema({
+    rideId: String,
+    userId: String,
+    time: Number,
+    location: geoLocation.schema
+})
+
+const passengerLimit = val => val.length <= 4
+
 const RideSchema = mongoose.Schema({
-    _id: String,
-    driver: user.schema,
-    passengers: [String],
-    vehicle: vehicle.schema,
-    startLocation: geoLocation.schema,
-    endLocation: geoLocation.schema,
-    departureTime: Date,
-    arrivalTime: Date,
-    passengerCount: Number,
-    completed: Boolean
+    driverId: String,
+    vehicleRegNo: String,
+    startLatitude: Number,
+    startLongitude: Number,
+    endLatitude: Number,
+    endLongitude: Number,
+    departureTime: Number,
+    passengers: {
+        type: [user.schema],
+        validate: [passengerLimit, '{PATH} exceeds passenger limit of 4']
+    },
+    PickUpLocs: [PickUp],
+    arrivalTime: Number,
+    passengerCount: {type: Number, default: 0},
+    completed: {type: Boolean, default: false}
 })
 
 const RideModel = mongoose.model('ride', RideSchema)
@@ -24,17 +37,21 @@ const Ride = {
     add: function (details) {
         return this.model.create(details)
     },
+    addPickup: function (details) {
+        let toPick = {
+            user: user.find(details.userId),
+            time: details.time,
+            location: geoLocation.mapLocation(details)
+        }
+        return this.model.findByIdAndUpdate(details.rideId,
+            {$push: {PickUp: toPick}}, {upsert: true})
+    },
     byUser: function (userId) {
         return this.model.find({user: userId})
     },
-    byRegion: function (region) {
-        return this.model.find({region: region})
-    },
     get: function (details) {
         if (typeof details === 'object') {
-            return this.model.find(details)
-        } else {
-            throw new Error('Expected an object but received:', typeof details)
+            return this.model.findById(details.rideId)
         }
     },
     update: function (newVersion) {
@@ -46,7 +63,7 @@ const Ride = {
             throw new Error('Ride Id expected but none was found')
         }
     },
-    markComplete: function (rideId) {
+    isComplete: function (rideId) {
         return this.model.findByIdAndUpdate(rideId, {
             completed: true,
             arrivalTime: Date.now()

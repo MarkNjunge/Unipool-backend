@@ -1,5 +1,4 @@
-const {Ride} = require('../../../database/models')
-
+const {Ride, User, Vehicle} = require('../../../database/models')
 const resolvers = {
     Query: {
         getRide(_, args) {
@@ -16,8 +15,20 @@ const resolvers = {
         startRide(_, args) {
             return Ride.add(args)
         },
+        addPickup(_, args) {
+            return Ride.addPickup(args)
+        },
         markRideAsCompleted(_, args) {
             return Ride.isComplete(args._id)
+        }
+    },
+    Ride: {
+        driver(ride) {
+            return User.find(ride.driverId)
+        },
+        vehicle(val) {
+            console.log(val);
+            return Vehicle.find(val.vehicleRegNo)
         }
     }
 }
