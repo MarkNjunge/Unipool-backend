@@ -3,6 +3,9 @@ const _ = require('lodash')
 const types = `
 # A point on the map
   type GeoLocation {
+  # The address of the location from Google Maps
+   name: String
+  
   # Latitude
    latitude: Float!
 
@@ -24,11 +27,16 @@ type Ride {
   # The vehicle used during the ride.
   vehicle: Vehicle
 
+  # Passengers on the ride
+  passengers: [User]  
+    
   # The location the ride was from.
-  startLocation: Geopoint
-
+    startLatitude: Float!
+    startLongitude: Float!
+    
   # The location the ride was to.
-  endLocation: Geopoint
+    endLatitude: Float!
+    endLongitude: Float!
 
   # Pickups done during the ride.
   pickUps: [Pickup]
@@ -40,18 +48,6 @@ type Ride {
   completed: Boolean
 }
 
-# A point on the map.
-type Geopoint {
-  # The address of the location from Google Maps
-  name: String!
-
-  # Latitude
-  latitude: Float!
-
-  # Longitude
-  longitude: Float!
-}
-
 # Details for a passenger picked up during a ride.
 type Pickup {
   # The user
@@ -61,10 +57,10 @@ type Pickup {
   time: Int
 
   # The location
-  location: Geopoint
+  location: GeoLocation
 }
 `
-
+// TODO: (mecolela) map the geolocs to actual grouped objects
 const query = `
 type Query{
   # Get a ride by its id
@@ -75,6 +71,9 @@ type Query{
     
   # Get all rides based on parameters.
   getAllRides(driverId: String, passengerId: String, vehicleRegNo: String, region: String, completed: Boolean): [Ride]
+  
+  # Ride Properties resolvers
+  passengers(rideId: String): [User]
 }
 `
 

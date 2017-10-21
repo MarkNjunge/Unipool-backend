@@ -55,10 +55,11 @@ const Ride = {
     byUser: function (userId) {
         return this.model.find({user: userId})
     },
-    get: function (details) {
-        if (typeof details === 'object') {
-            return this.model.findById(details.rideId)
+    get: function (arg) {
+        if (typeof arg === 'object') {
+            return this.model.findById(arg.rideId)
         }
+        return this.model.findOne(arg);
     },
     update: function (newVersion) {
         if (newVersion.hasOwnProperty('id')) {

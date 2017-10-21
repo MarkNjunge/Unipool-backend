@@ -17,7 +17,7 @@ const Vehicle = {
         return newVehicle.save();
     },
     find: function (arg) {
-        return this.model.findOne(arg)
+        return this.model.findOne({registrationNumber: arg})
     },
     update: function (details) {
         if (details.hasOwnProperty('userId')) {

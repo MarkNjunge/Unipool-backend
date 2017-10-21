@@ -1,4 +1,4 @@
-const {Ride, User, Vehicle} = require('../../../database/models')
+const {Ride, User, Vehicle, GeoLocation} = require('../../../database/models')
 const resolvers = {
     Query: {
         getRide(_, args) {
@@ -26,9 +26,15 @@ const resolvers = {
         driver(ride) {
             return User.find(ride.driverId)
         },
-        vehicle(val) {
-            console.log(val);
-            return Vehicle.find(val.vehicleRegNo)
+        vehicle(ride) {
+            return Vehicle.find(ride.vehicleRegNo)
+        },
+        passengers(ride) {
+            return User.find({
+                _id: {
+                    $in: ride.passengers
+                }
+            })
         }
     }
 }

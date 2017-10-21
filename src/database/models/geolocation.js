@@ -15,8 +15,7 @@ const GeoLocation = {
     mapLocation(arg) {
         return (arg.latitude && arg.longitude) ?
             {lat: arg.latitude, long: arg.longitude, name: arg.name || ''} :
-            (arg.hasOwnProperty('location')) ?
-                arg.location :
+            (arg.hasOwnProperty('location')) ? arg.location :
                 false
     }
 }
