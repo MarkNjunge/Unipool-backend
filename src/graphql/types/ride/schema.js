@@ -25,12 +25,10 @@ type Ride {
   vehicle: Vehicle
 
   # The location the ride was from.
-  startLatitude: Float!
-  startLongitude: Float!
-  
+  startLocation: Geopoint
+
   # The location the ride was to.
-  endLatitude: Float!
-  endLongitude: Float!
+  endLocation: Geopoint
 
   # Pickups done during the ride.
   pickUps: [Pickup]
@@ -42,6 +40,18 @@ type Ride {
   completed: Boolean
 }
 
+# A point on the map.
+type Geopoint {
+  # The address of the location from Google Maps
+  name: String!
+
+  # Latitude
+  latitude: Float!
+
+  # Longitude
+  longitude: Float!
+}
+
 # Details for a passenger picked up during a ride.
 type Pickup {
   # The user
@@ -51,8 +61,7 @@ type Pickup {
   time: Int
 
   # The location
-  latitude: Float!
-  longitude: Float!
+  location: Geopoint
 }
 `
 
@@ -64,16 +73,8 @@ type Query{
    # Get all the rides a user has been on
   getRidesByUser(userId: String!): Ride 
     
-   # Get all rides based on parameters.
-  getAllRides(driverId: String,
-       passengerId: String,
-       vehicleRegNo: String, 
-       region: String,
-       completed: Boolean): [Ride]
-   # Obtain the drivers details 
-  driver(driverId: String!): User
-  # Obtain the vehicles details
-  vehicle(vehicleRegNo: String!): Vehicle
+  # Get all rides based on parameters.
+  getAllRides(driverId: String, passengerId: String, vehicleRegNo: String, region: String, completed: Boolean): [Ride]
 }
 `
 
@@ -84,17 +85,16 @@ type Mutation{
     driverId: String!,
     vehicleRegNo: String!, 
     startLatitude: Float!,
-    startLongitude: Float!,
-    departureTime: Int!
+    startLongitude: Float!
   ): String
 
-  # Add a user to pick up
+  # Add a user as picked up
   addPickup(
     rideId: String!,
     userId: String!
+    name: String
     latitude: Float!,
-    longitude: Float!,
-    time: Int!
+    longitude: Float!
   ): String
 
   # Mark an ongoing ride as completed.
