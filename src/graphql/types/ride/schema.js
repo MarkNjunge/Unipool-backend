@@ -95,6 +95,7 @@ type Mutation{
     name: String
     latitude: Float!,
     longitude: Float!
+    time: Int!
   ): String
 
   # Mark an ongoing ride as completed.

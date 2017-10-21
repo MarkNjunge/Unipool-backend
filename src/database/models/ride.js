@@ -20,7 +20,8 @@ const RideSchema = mongoose.Schema({
     endLongitude: Number,
     departureTime: Number,
     passengers: {
-        type: [user.schema],
+        type: [String],
+        // unique: true,
         validate: [passengerLimit, '{PATH} exceeds passenger limit of 4']
     },
     PickUpLocs: [PickUp],
@@ -35,16 +36,21 @@ const Ride = {
     schema: RideSchema,
     model: RideModel,
     add: function (details) {
-        return this.model.create(details)
+        const toAdd = new this.model(details)
+        return toAdd.save()
     },
     addPickup: function (details) {
-        let toPick = {
-            user: user.find(details.userId),
-            time: details.time,
-            location: geoLocation.mapLocation(details)
-        }
-        return this.model.findByIdAndUpdate(details.rideId,
-            {$push: {PickUp: toPick}}, {upsert: true})
+            let toPick = {
+                userId: details.userId,
+                time: details.time,
+                location: geoLocation.mapLocation(details)
+            }
+            return this.model.findOneAndUpdate({_id: details.rideId},
+                {
+                    $push: {PickUpLocs: toPick,
+                            passengers: details.userId},
+                    $inc: {passengerCount: 1}
+                }, {upsert: true})
     },
     byUser: function (userId) {
         return this.model.find({user: userId})
@@ -57,7 +63,6 @@ const Ride = {
     update: function (newVersion) {
         if (newVersion.hasOwnProperty('id')) {
             let id = newVersion.id
-            delete newVersion.id
             return this.model.findByIdAndUpdate(id, newVersion)
         } else {
             throw new Error('Ride Id expected but none was found')
