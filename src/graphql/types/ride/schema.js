@@ -42,6 +42,9 @@ type Ride {
 
 # A point on the map.
 type Geopoint {
+  # The address of the location from Google Maps
+  name: String!
+
   # Latitude
   latitude: Float!
 
@@ -76,11 +79,6 @@ type Query{
 `
 
 const mutation = `
-input GeoLoc {
-    latitude: Float!
-    longitude: Float!
-}
-
 type Mutation{
   # Add a new ride.
   startRide(
@@ -94,6 +92,7 @@ type Mutation{
   addPickup(
     rideId: String!,
     userId: String!
+    name: String
     latitude: Float!,
     longitude: Float!
   ): String
