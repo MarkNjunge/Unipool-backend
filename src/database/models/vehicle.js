@@ -13,7 +13,8 @@ const Vehicle = {
     schema: VehicleSchema,
     model: VehicleModel,
     add: function (details) {
-        return this.model.create(details)
+        let newVehicle = new this.model(details);
+        return newVehicle.save();
     },
     find: function (arg) {
         return this.model.findOne(arg)
