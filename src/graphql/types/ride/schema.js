@@ -1,18 +1,6 @@
 const _ = require('lodash')
 
 const types = `
-# A point on the map
-  type GeoLocation {
-  # The address of the location from Google Maps
-   name: String
-  
-  # Latitude
-   latitude: Float!
-
-  # Longitude
-   longitude: Float!
-}
-
 # A carpool ride
 type Ride {
   # id of the ride.
@@ -31,12 +19,10 @@ type Ride {
   passengers: [User]  
     
   # The location the ride was from.
-    startLatitude: Float!
-    startLongitude: Float!
+  startLocation: GeoLocation
     
   # The location the ride was to.
-    endLatitude: Float!
-    endLongitude: Float!
+  endLocation: GeoLocation
 
   # Pickups done during the ride.
   pickUps: [Pickup]
@@ -46,6 +32,18 @@ type Ride {
 
   # Whether or not the ride has been completed.
   completed: Boolean
+}
+
+# A point on the map
+type GeoLocation {
+  # The address of the location from Google Maps
+  name: String
+  
+  # Latitude
+  latitude: Float!
+
+  # Longitude
+  longitude: Float!
 }
 
 # Details for a passenger picked up during a ride.
@@ -66,14 +64,11 @@ type Query{
   # Get a ride by its id
   getRide(rideId: String!): Ride
 
-   # Get all the rides a user has been on
-  getRidesByUser(userId: String!): Ride 
+  # Get all the rides a user has been on
+  getRidesByUser(userId: String!): [Ride]
     
   # Get all rides based on parameters.
   getAllRides(driverId: String, passengerId: String, vehicleRegNo: String, region: String, completed: Boolean): [Ride]
-  
-  # Ride Properties resolvers
-  passengers(rideId: String): [User]
 }
 `
 
@@ -82,16 +77,17 @@ type Mutation{
   # Add a new ride.
   startRide(
     driverId: String!,
-    vehicleRegNo: String!, 
-    startLatitude: Float!,
-    startLongitude: Float!
+    vehicleRegNo: String!,
+    locationName: String!,
+    latitude: Float!,
+    longitude: Float!
   ): String
 
   # Add a user as picked up
   addPickup(
     rideId: String!,
     userId: String!
-    name: String
+    locationName: String!
     latitude: Float!,
     longitude: Float!
     time: Int!
@@ -100,6 +96,7 @@ type Mutation{
   # Mark an ongoing ride as completed.
   markRideAsCompleted(
     _id: String!,
+    locationName: String!
     latitude: Float!,
     longitude: Float!
   ): Boolean

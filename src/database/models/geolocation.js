@@ -3,8 +3,8 @@
 const mongoose = require('mongoose')
 
 const GeoSchema = mongoose.Schema({
-    lat: Number,
-    long: Number,
+    latitude: Number,
+    longitude: Number,
     name: String
 })
 

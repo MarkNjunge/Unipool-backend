@@ -3,7 +3,6 @@ const user = require('./user')
 const geoLocation = require('./geolocation')
 
 const PickUp = mongoose.Schema({
-    rideId: String,
     userId: String,
     time: Number,
     location: geoLocation.schema
@@ -14,19 +13,16 @@ const passengerLimit = val => val.length <= 4
 const RideSchema = mongoose.Schema({
     driverId: String,
     vehicleRegNo: String,
-    startLatitude: Number,
-    startLongitude: Number,
-    endLatitude: Number,
-    endLongitude: Number,
+    startLocation: geoLocation.schema,
+    endLocation: geoLocation.schema,
     departureTime: Number,
     passengers: {
         type: [String],
         // unique: true,
         validate: [passengerLimit, '{PATH} exceeds passenger limit of 4']
     },
-    PickUpLocs: [PickUp],
+    pickUps: [PickUp],
     arrivalTime: Number,
-    passengerCount: {type: Number, default: 0},
     completed: {type: Boolean, default: false}
 })
 
@@ -47,9 +43,8 @@ const Ride = {
             }
             return this.model.findOneAndUpdate({_id: details.rideId},
                 {
-                    $push: {PickUpLocs: toPick,
-                            passengers: details.userId},
-                    $inc: {passengerCount: 1}
+                    $push: {pickUp: toPick,
+                            passengers: details.userId}
                 }, {upsert: true})
     },
     byUser: function (userId) {
