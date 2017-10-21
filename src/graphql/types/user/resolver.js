@@ -5,6 +5,9 @@ const resolvers = {
         getUser(_, args) {
             return User.find(args.userId)
         },
+        getAllUsers() {
+          return User.find({})
+        },
         getVehicle(_, args) {
             return User.getVehicles(args.registrationNumber)
         }

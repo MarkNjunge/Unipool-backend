@@ -19,10 +19,14 @@ const User = {
     schema: UserSchema,
     model: UserModel,
     add: function (details) {
-        return this.model.create(details)
+        const newUser = new this.model(details)
+        return newUser.save()
     },
-    find: function (userId) {
-        return this.model.findById(userId)
+    find: function (arg) {
+        if (typeof arg === 'object') {
+            return this.model.find(arg)
+        }
+        return this.model.findById(arg)
     },
     getVehicles: function (userId) {
         return new Promise((resolve, reject) => {

@@ -37,6 +37,9 @@ type Query {
   # Get a user by their id
   getUser(userId: String!): User
 
+  # Get all the users [DEV]
+  getAllUsers: [User]
+
   # Get a vehicle by it's registration number
   getVehicle(registrationNumber: String!): Vehicle
 }
