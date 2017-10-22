@@ -8,7 +8,7 @@ const GeoSchema = mongoose.Schema({
     name: String
 })
 
-const GeoModel = mongoose.model('Geolocation', GeoSchema)
+const GeoModel = mongoose.model('GeoLocation', GeoSchema)
 const GeoLocation = {
     schema: GeoSchema,
     model: GeoModel,
