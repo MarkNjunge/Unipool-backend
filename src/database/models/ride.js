@@ -18,7 +18,7 @@ const RideSchema = mongoose.Schema({
     departureTime: Number,
     passengers: {
         type: [String],
-        // unique: true,
+        unique: true,
         validate: [passengerLimit, '{PATH} exceeds passenger limit of 4']
     },
     pickUps: [PickUp],
