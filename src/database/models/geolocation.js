@@ -14,7 +14,7 @@ const GeoLocation = {
     model: GeoModel,
     mapLocation(arg) {
         return (arg.latitude && arg.longitude) ?
-            {lat: arg.latitude, long: arg.longitude, name: arg.name || ''} :
+            {latitude: arg.latitude, longitude: arg.longitude, name: arg.name || ''} :
             (arg.hasOwnProperty('location')) ? arg.location :
                 false
     }
