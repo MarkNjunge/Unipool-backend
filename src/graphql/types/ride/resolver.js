@@ -1,4 +1,4 @@
-const {Ride, User, Vehicle, GeoLocation} = require('../../../database/models')
+const {Ride, User, Vehicle} = require('../../../database/models')
 const resolvers = {
     Query: {
         getRide(_, args) {
