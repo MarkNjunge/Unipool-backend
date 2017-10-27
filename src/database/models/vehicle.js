@@ -26,15 +26,20 @@ const Vehicle = {
             userId
         })
     },
-    update: function(details) {
-        if (details.hasOwnProperty('userId')) {
-            return this.model.findByIdAndUpdate(details.userId, details)
-        } else {
-            throw new Error('Vehicle Id expected but none was found')
-        }
+    update: function(args) {
+        return this.model.findOne(
+            { registartionNumber: args.registartionNumber },
+            (err, res) => {
+                res.make = args.make ? args.make : res.make
+                res.capacity = args.capacity ? args.capacity : res.capacity
+                res.color = args.color ? args.color : res.color
+
+                return res.save()
+            }
+        )
     },
-    delete: function(vehicleId) {
-        return this.model.findByIdAndRemove(vehicleId)
+    delete: function(registrationNumber) {
+        return this.model.remove({ registrationNumber }).exec()
     }
 }
 

@@ -33,9 +33,9 @@ const mutation = `
 type Mutation {
   addVehicle(userId: String!, registrationNumber: String!, make: String!, color: String!, capacity: Int!): String
 
-  updateVehicle(userId: String!, registrationNumber: String!, make: String, color: String, capacity: Int): String
+  updateVehicle(registrationNumber: String!, make: String, color: String, capacity: Int): String
 
-  deleteVehicle(userId: String!, registrationNumber: String!): String
+  deleteVehicle(registrationNumber: String!): String
 }
 `
 

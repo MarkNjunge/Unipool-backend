@@ -15,7 +15,7 @@ const resolvers = {
             return Vehicle.update(args)
         },
         deleteVehicle(_, args) {
-            return null
+            return Vehicle.delete(args.registrationNumber)
         }
     },
     Vehicle: {
