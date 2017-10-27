@@ -43,9 +43,7 @@ Promise.resolve()
         }))
     })
     .then(() => {
-        app.use('/', (req, res) => {
-            res.sendFile(path.join(__dirname, './public/index.html'))
-        })
+        app.use(express.static(__dirname + "/public"))
     })
     .then(() => {
         logger.info('Starting server...')
