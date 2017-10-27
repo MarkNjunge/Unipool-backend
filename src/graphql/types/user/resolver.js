@@ -1,4 +1,4 @@
-const {User} = require('../../../database/models')
+const { Vehicle, User } = require('../../../database/models')
 
 const resolvers = {
     Query: {
@@ -6,7 +6,7 @@ const resolvers = {
             return User.find(args.userId)
         },
         getAllUsers() {
-          return User.find({})
+            return User.find({})
         },
         getVehicle(_, args) {
             return User.getVehicles(args.registrationNumber)
@@ -21,6 +21,11 @@ const resolvers = {
         },
         deleteUser(_, args) {
             return User.delete(args._id)
+        }
+    },
+    User: {
+        vehicles(user) {
+            return Vehicle.findAll(user._id)
         }
     }
 }

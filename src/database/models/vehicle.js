@@ -21,6 +21,11 @@ const Vehicle = {
             registrationNumber: arg.registrationNumber
         })
     },
+    findAll: function(userId) {
+        return this.model.find({
+            userId
+        })
+    },
     update: function(details) {
         if (details.hasOwnProperty('userId')) {
             return this.model.findByIdAndUpdate(details.userId, details)
