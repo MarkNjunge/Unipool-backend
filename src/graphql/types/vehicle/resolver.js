@@ -1,8 +1,9 @@
-const {Vehicle, User} = require('../../../database/models')
+const { Vehicle, User } = require('../../../database/models')
 
 const resolvers = {
     Query: {
         getVehicle(_, args) {
+            console.log(args)
             return Vehicle.find(args)
         }
     },
