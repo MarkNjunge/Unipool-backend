@@ -1,10 +1,8 @@
 const {
-  makeExecutableSchema,
-  addMockFunctionsToSchema
+    makeExecutableSchema,
+    addMockFunctionsToSchema
 } = require('graphql-tools')
-const {
-  mergeTypes
-} = require('merge-graphql-schemas')
+const { mergeTypes } = require('merge-graphql-schemas')
 
 const mocks = require('./mocks')
 
@@ -12,6 +10,7 @@ const resolvers = require('./resolver')
 const UserTypeDefs = require('./types/user/schema')
 const VehicleTypeDefs = require('./types/vehicle/schema')
 const RideTypeDefs = require('./types/ride/schema')
+const RideRequestTypeDefs = require('./types/ride-request/schema')
 
 const baseTypeDefs = `
 schema {
@@ -21,8 +20,14 @@ schema {
 `
 
 const schema = makeExecutableSchema({
-  typeDefs: mergeTypes([baseTypeDefs, UserTypeDefs, VehicleTypeDefs, RideTypeDefs]),
-  resolvers
+    typeDefs: mergeTypes([
+        baseTypeDefs,
+        UserTypeDefs,
+        VehicleTypeDefs,
+        RideTypeDefs,
+        RideRequestTypeDefs
+    ]),
+    resolvers
 })
 
 // addMockFunctionsToSchema({schema, mocks})

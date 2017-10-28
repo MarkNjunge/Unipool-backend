@@ -46,6 +46,18 @@ type GeoLocation {
   longitude: Float!
 }
 
+# A point on the map for input
+input GeoLocationInput {
+  # The address of the location from Google Maps
+  name: String
+  
+  # Latitude
+  latitude: Float!
+
+  # Longitude
+  longitude: Float!
+}
+
 # Details for a passenger picked up during a ride.
 type Pickup {
   # The user
