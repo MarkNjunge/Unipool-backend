@@ -22,7 +22,8 @@ const RideRequest = {
         return this.model.findOne({ userId })
     },
     findAll: function(endLocation) {
-        return this.model.find({ endLocation })
+        // TODO: Use some radius determination for the end location
+        return this.model.find({})
     },
     remove: function(userId) {
         return this.model.remove({ userId })
