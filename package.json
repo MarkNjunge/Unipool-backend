@@ -6,8 +6,9 @@
     "author": "Mark Njung'e",
     "license": "MIT",
     "scripts": {
-        "start": "set ENVIRONMENT=production&& node src/server.js",
+        "start": "set ENVIRONMENT=development&& node src/server.js",
         "start-live": "set ENVIRONMENT=development&& nodemon src/server.js",
+        "dev": "set ENVIRONMENT=production&& nodemon src/server.js",
         "start-deploy": "node src/server.js"
     },
     "contributors": [
