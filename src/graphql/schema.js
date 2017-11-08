@@ -11,6 +11,7 @@ const UserTypeDefs = require('./types/user/schema')
 const VehicleTypeDefs = require('./types/vehicle/schema')
 const RideTypeDefs = require('./types/ride/schema')
 const RideRequestTypeDefs = require('./types/ride-request/schema')
+const ScheduledRideTypeDefs = require('./types/scheduled-ride/schema')
 
 const baseTypeDefs = `
 schema {
@@ -25,7 +26,8 @@ const schema = makeExecutableSchema({
         UserTypeDefs,
         VehicleTypeDefs,
         RideTypeDefs,
-        RideRequestTypeDefs
+        RideRequestTypeDefs,
+        ScheduledRideTypeDefs
     ]),
     resolvers
 })
