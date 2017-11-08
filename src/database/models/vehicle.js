@@ -21,14 +21,12 @@ const Vehicle = {
             registrationNumber: arg.registrationNumber
         })
     },
-    findAll: function(userId) {
-        return this.model.find({
-            userId
-        })
+    findAll: function() {
+        return this.model.find({})
     },
     update: function(args) {
         return this.model.findOne(
-            { registartionNumber: args.registartionNumber },
+            { registrationNumber: args.registartionNumber },
             (err, res) => {
                 res.make = args.make ? args.make : res.make
                 res.capacity = args.capacity ? args.capacity : res.capacity

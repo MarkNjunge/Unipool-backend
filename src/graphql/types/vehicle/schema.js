@@ -25,6 +25,9 @@ type Query {
   # Get a vehicle by it's registration number.
   getVehicle(registrationNumber: String!): Vehicle
   
+  # Get all vehicles
+  getAllVehicles: [Vehicle]
+  
   owner(userId: String!): User
 }
 `
