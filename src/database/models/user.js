@@ -11,6 +11,7 @@ const UserSchema = mongoose.Schema({
     phone: { type: Number, required: true }
 })
 
+
 const UserModel = mongoose.model('User', UserSchema)
 
 const User = {
@@ -25,18 +26,6 @@ const User = {
             return this.model.find(arg)
         }
         return this.model.findById(arg)
-    },
-    getVehicles: function(userId) {
-        return new Promise((resolve, reject) => {
-            this.model
-                .findById(userId)
-                .then(user => {
-                    resolve(user.vehicles)
-                })
-                .catch(err => {
-                    reject(err)
-                })
-        })
     },
     delete: function(userId) {
         return this.model.findByIdAndRemove(userId)

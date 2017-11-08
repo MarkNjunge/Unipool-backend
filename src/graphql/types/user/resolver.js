@@ -7,9 +7,6 @@ const resolvers = {
         },
         getAllUsers() {
             return User.find({})
-        },
-        getVehicle(_, args) {
-            return User.getVehicles(args.registrationNumber)
         }
     },
     Mutation: {

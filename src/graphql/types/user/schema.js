@@ -40,8 +40,6 @@ type Query {
   # Get all the users [DEV]
   getAllUsers: [User]
 
-  # Get a vehicle by it's registration number
-  getVehicle(registrationNumber: String!): Vehicle
 }
 `;
 
