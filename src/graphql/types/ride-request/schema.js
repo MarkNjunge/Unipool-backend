@@ -13,7 +13,7 @@ type RideRequest {
   endLocation: GeoLocation
 
   # The time the ride was requested
-  requestTime: Int
+  requestTime: Float
 }
 `
 

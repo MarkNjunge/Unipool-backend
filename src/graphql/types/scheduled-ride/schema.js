@@ -15,7 +15,7 @@ type ScheduledRide {
   endLocation: GeoLocation!
 
   # The time the ride is scheduled for
-  time: Int!
+  time: Float!
 
   # The driver who will fulfil the ride. 
   # Is null if no driver is going to fulfil the request.

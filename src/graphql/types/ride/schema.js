@@ -10,7 +10,7 @@ type Ride {
   driver: User
 
   # The time the ride started.
-  departureTime: Int
+  departureTime: Float
 
   # The vehicle used during the ride.
   vehicle: Vehicle
@@ -25,7 +25,7 @@ type Ride {
   pickUps: [Pickup]
 
   # The time the ride ended.
-  arrivalTime: Int
+  arrivalTime: Float
 
   # Whether or not the ride has been completed.
   completed: Boolean
@@ -61,7 +61,7 @@ type Pickup {
   user: User
 
   # The time the user was picked up
-  time: Int
+  time: Float
 
   # The location
   location: GeoLocation
