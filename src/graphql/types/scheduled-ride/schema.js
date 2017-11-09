@@ -3,7 +3,7 @@ const _ = require('lodash')
 const types = `
 type ScheduledRide {
   # The id of the ride
-  _id: String!
+  rideId: String!
 
   # The user who has scheduled the ride
   user: User!
@@ -15,7 +15,7 @@ type ScheduledRide {
   endLocation: GeoLocation!
 
   # The time the ride is scheduled for
-  time: Float!
+  depatureTime: Float!
 
   # The driver who will fulfil the ride. 
   # Is null if no driver is going to fulfil the request.
@@ -28,12 +28,14 @@ type Query {
   getAllScheduledRides: [ScheduledRide]
   
   getScheduledRidesForUser(userId: String!): [ScheduledRide]
+
+  getScheduledRideById(rideId: String!): ScheduledRide
 }
 `
 
 const mutation = `
 type Mutation {
-  addScheduledRide(userID: String!, startLocation: GeoLocationInput!, endLocation: GeoLocationInput!): String
+  addScheduledRide(rideId: String!, userId: String!, startLocation: GeoLocationInput!, endLocation: GeoLocationInput!, depatureTime: Float!): String
   
   deleteScheduledRide(rideId: String!): String
   

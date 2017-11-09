@@ -1,29 +1,34 @@
+const { ScheduledRide, User } = require('../../../database/models')
+
 const resolvers = {
     Query: {
         getAllScheduledRides(_, args) {
-            return null
+            return ScheduledRide.getAll()
         },
         getScheduledRidesForUser(_, args) {
-            return null
+            return ScheduledRide.getForUser(args.userId)
+        },
+        getScheduledRideById(_, args) {
+            return ScheduledRide.getById(args.rideId)
         }
     },
     Mutation: {
         addScheduledRide(_, args) {
-            return null
+            return ScheduledRide.add(args)
         },
         deleteScheduledRide(_, args) {
-            return null
+            return ScheduledRide.delete(args.rideId)
         },
         setScheduledRideDriver(_, args) {
-            return null
+            return ScheduledRide.setDriver(args.rideId, args.driverId)
         }
     },
     ScheduledRide: {
         user(scheduledRide) {
-            return null
+            return User.find(scheduledRide.userId)
         },
         driver(scheduledRide) {
-            return null
+            return User.find(scheduledRide.driverId)
         }
     }
 }
