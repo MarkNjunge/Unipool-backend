@@ -20,7 +20,7 @@ type RideRequest {
 const query = `
 type Query {
   # Find all requests based on the end location
-  getAllRequests(endLocation: GeoLocationInput!): [RideRequest]
+  getAllRequests: [RideRequest]
 
   # Find the current request made by a user
   getRequestsByUser(userId: String!): RideRequest

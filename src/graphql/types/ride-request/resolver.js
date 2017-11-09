@@ -3,7 +3,7 @@ const { RideRequest, User } = require('../../../database/models')
 const resolvers = {
     Query: {
         getAllRequests(_, args) {
-            return RideRequest.findAll(args.endLocation)
+            return RideRequest.findAll()
         },
         getRequestsByUser(_, args) {
             return RideRequest.findByUser(args.userId)
