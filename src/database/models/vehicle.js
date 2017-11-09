@@ -21,8 +21,12 @@ const Vehicle = {
             registrationNumber: arg.registrationNumber
         })
     },
-    findAll: function() {
-        return this.model.find({})
+    findAll: function(userId) {
+        if (userId == undefined) {
+            return this.model.find({})
+        } else {
+            return this.model.find({ userId })
+        }
     },
     update: function(args) {
         return this.model.findOne(

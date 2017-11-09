@@ -4,7 +4,7 @@ const types = `
 # A carpool ride
 type Ride {
   # id of the ride.
-  _id: String
+  rideId: String
 
   # The driver of the ride.
   driver: User
@@ -14,9 +14,6 @@ type Ride {
 
   # The vehicle used during the ride.
   vehicle: Vehicle
-
-  # Passengers on the ride
-  passengers: [User]  
     
   # The location the ride was from.
   startLocation: GeoLocation
@@ -68,6 +65,9 @@ type Pickup {
 
   # The location
   location: GeoLocation
+
+  # Whether the user has been picked up
+  completed: Boolean
 }
 `
 // TODO: (mecolela) map the geolocs to actual grouped objects
@@ -88,11 +88,10 @@ const mutation = `
 type Mutation{
   # Add a new ride.
   startRide(
+    rideId: String!
     driverId: String!,
     vehicleRegNo: String!,
-    locationName: String!,
-    latitude: Float!,
-    longitude: Float!
+    startLocation: GeoLocationInput!
   ): String
 
   # Add a user as picked up
@@ -102,12 +101,26 @@ type Mutation{
     locationName: String!
     latitude: Float!,
     longitude: Float!
-    time: Int!
+  ): String
+
+  # Remove a pick up from a ride
+  removePickUp(
+    rideId:String!,
+    userId:String!
+  ): String
+
+  # Updates a pickup as completed
+  setPickUpCompleted(
+    rideId:String!,
+    userId:String!,
+    locationName: String!
+    latitude: Float!,
+    longitude: Float!
   ): String
 
   # Mark an ongoing ride as completed.
   markRideAsCompleted(
-    _id: String!,
+    rideId: String!,
     locationName: String!
     latitude: Float!,
     longitude: Float!
