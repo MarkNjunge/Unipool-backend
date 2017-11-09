@@ -14,12 +14,12 @@ const {
 function init() {
     return new Promise((resolve, reject) => {
         let mongoUrl = ''
-        if(process.env.ENVIRONMENT == 'production'){
+        if (process.env.ENVIRONMENT == 'production') {
             mongoUrl = mongoConfig.url
-        }else{
+        } else {
             mongoUrl = mongoConfig.localUrl
         }
-        
+
         mongoose.connect(mongoUrl, connectOptions)
         const db = mongoose.connection
 

@@ -2,6 +2,7 @@ const ip = require('ip')
 const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const formatError = require('apollo-errors').formatError
 const {
     graphqlExpress,
@@ -18,6 +19,8 @@ const Schema = require('./graphql/schema')
 const PORT = process.argv[2] ? process.argv[2] : 3000
 
 const app = express()
+
+app.use(cors())
 
 Promise.resolve()
     .then(() => {
@@ -43,7 +46,7 @@ Promise.resolve()
         }))
     })
     .then(() => {
-        app.use(express.static(__dirname + "/public"))
+        app.use(express.static(__dirname + '/public'))
     })
     .then(() => {
         logger.info('Starting server...')
