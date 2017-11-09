@@ -4,6 +4,7 @@ const GeoLocation = require('./geolocation.js')
 const Vehicle = require('./vehicle.js')
 const RideRequest = require('./ride-request')
 const Manager = require('./manager')
+const ScheduledRide = require('./scheduled-ride')
 
 module.exports = {
     Ride,
@@ -11,5 +12,6 @@ module.exports = {
     Vehicle,
     GeoLocation,
     RideRequest,
-    Manager
+    Manager,
+    ScheduledRide
 }
