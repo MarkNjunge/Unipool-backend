@@ -3,7 +3,11 @@
 const mongoose = require('mongoose')
 mongoose.Promise = require('bluebird')
 const connectOptions = {
-    useMongoClient: true
+    useMongoClient: true,
+    keepAlive: 1,
+    reconnectTries: Number.MAX_VALUE,
+    reconnectInterval: 500,
+    connectTimeoutMS: 30000
 }
 const logger = require('../middleware/logger')
 
