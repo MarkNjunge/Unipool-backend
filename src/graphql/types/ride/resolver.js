@@ -13,7 +13,7 @@ const resolvers = {
     },
     Mutation: {
         startRide(_, args) {
-            args.depatureTime = Date.now()
+            args.departureTime = Date.now()
             return Ride.add(args)
         },
         addPickup(_, args) {
