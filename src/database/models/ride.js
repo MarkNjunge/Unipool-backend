@@ -92,14 +92,33 @@ const Ride = {
             }
         })
     },
-    byUser: function(userId) {
-        return this.model.find({ user: userId })
+    getByUser: function(userId) {
+        return new Promise((resolve, reject) => {
+            const userRides = []
+            this.model.find({}, (err, res) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    res.forEach(ride => {
+                        ride.pickUps.forEach(pickUp => {
+                            if (pickUp.userId === userId) {
+                                userRides.push(ride)
+                            }
+                        })
+                    })
+                    resolve(userRides)
+                }
+            })
+        })
     },
     get: function(arg) {
         if (typeof arg === 'object') {
             return this.model.findById(arg.rideId)
         }
         return this.model.findOne(arg)
+    },
+    getAll: function() {
+        return this.model.find({})
     },
     update: function(newVersion) {
         if (newVersion.hasOwnProperty('id')) {

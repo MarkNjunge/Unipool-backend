@@ -3,9 +3,9 @@ const { Vehicle, User } = require('../../../database/models')
 const resolvers = {
     Query: {
         getVehicle(_, args) {
-            return Vehicle.find(args)
+            return Vehicle.find(args.registrationNumber)
         },
-        getAllVehicles(){
+        getAllVehicles() {
             return Vehicle.findAll()
         }
     },

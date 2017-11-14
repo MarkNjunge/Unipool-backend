@@ -5,10 +5,10 @@ const resolvers = {
             return Ride.get(args)
         },
         getRidesByUser(_, args) {
-            return Ride.byUser(args)
+            return Ride.getByUser(args.userId)
         },
         getAllRides(_, args) {
-            return Ride.get(args)
+            return Ride.getAll()
         }
     },
     Mutation: {

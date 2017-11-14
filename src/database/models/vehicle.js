@@ -16,9 +16,9 @@ const Vehicle = {
         let newVehicle = new this.model(details)
         return newVehicle.save()
     },
-    find: function(arg) {
+    find: function(registrationNumber) {
         return this.model.findOne({
-            registrationNumber: arg.registrationNumber
+            registrationNumber
         })
     },
     findAll: function(userId) {
