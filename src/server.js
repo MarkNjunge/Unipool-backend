@@ -1,4 +1,3 @@
-const ip = require('ip')
 const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -51,7 +50,7 @@ Promise.resolve()
     .then(() => {
         logger.info('Starting server...')
         app.listen(PORT, () => {
-            logger.info(`Server successfully started on ${ip.address()}:${PORT}`)
+            logger.info(`Server successfully started on port ${PORT}`)
         })
     })
     .catch(reason => {

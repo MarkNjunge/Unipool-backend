@@ -1,4 +1,4 @@
-const _ = require("lodash");
+const _ = require('lodash')
 
 const types = `
 # A user of the system. Either a driver or a rider.
@@ -30,7 +30,7 @@ enum Gender{
   M,
   F
 }
-`;
+`
 
 const query = `
 type Query {
@@ -41,7 +41,7 @@ type Query {
   getAllUsers: [User]
 
 }
-`;
+`
 
 const mutation = `
 type Mutation {
@@ -68,6 +68,6 @@ type Mutation {
     _id: String!
   ): Boolean
 }
-`;
+`
 
-module.exports = _.join([types, query, mutation]);
+module.exports = _.join([types, query, mutation])

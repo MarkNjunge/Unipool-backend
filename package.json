@@ -1,15 +1,13 @@
 {
-    "name": "UniPool",
+    "name": "unipool",
     "version": "1.0.0",
     "description": "Backend for university carpool system",
     "main": "src/app.js",
     "author": "Mark Njung'e",
     "license": "MIT",
     "scripts": {
-        "start": "set ENVIRONMENT=development&& node src/server.js",
-        "start-live": "set ENVIRONMENT=development&& nodemon src/server.js",
-        "dev": "set ENVIRONMENT=production&& nodemon src/server.js",
-        "start-deploy": "node src/server.js"
+        "start": "node src/server.js",
+        "server": "nodemon src/server.js"
     },
     "contributors": [
         {
@@ -28,12 +26,12 @@
         "casual": "^1.5.17",
         "chalk": "^2.1.0",
         "cors": "^2.8.4",
+        "dotenv": "^6.0.0",
         "express": "^4.15.5",
         "geolib": "^2.0.23",
         "graphql": "^0.11.3",
         "graphql-server-express": "^1.1.2",
         "graphql-tools": "^1.2.3",
-        "ip": "^1.1.5",
         "jsonwebtoken": "^8.1.0",
         "lodash": "^4.17.4",
         "merge-graphql-schemas": "^1.1.4",

@@ -17,12 +17,7 @@ const {
 
 function init() {
     return new Promise((resolve, reject) => {
-        let mongoUrl = ''
-        if (process.env.ENVIRONMENT == 'production') {
-            mongoUrl = mongoConfig.url
-        } else {
-            mongoUrl = mongoConfig.localUrl
-        }
+        let mongoUrl = mongoConfig.url
 
         mongoose.connect(mongoUrl, connectOptions)
         const db = mongoose.connection
@@ -32,7 +27,7 @@ function init() {
         })
 
         db.on('open', () => {
-            logger.info('Mongo Connected ' + mongoUrl)
+            logger.info('Connected to database')
             resolve()
         })
 
