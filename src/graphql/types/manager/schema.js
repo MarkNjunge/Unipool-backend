@@ -5,23 +5,23 @@ const types = `
 # Used to authorize the current user.
 type AuthenticationReturn{
   # Token to be used for requests that require authorization. Passed in the header as Authorization: 'token'
-  token: String
+  token: String!
 
   # The time (epoch time in seconds) at which the token was created.
-  created: Int
+  created: Int!
 
   # The time (epoch time in seconds) at which the token expires.
-  expires: Int
+  expires: Int!
 }
 `
 
 const mutation = `
 type Mutation {
   # Register a new user. Email is unique.
-  register(username: String!, password: String!): AuthenticationReturn
+  register(username: String!, password: String!): AuthenticationReturn!
 
   # Login a user.
-  login(username: String!, password: String!): AuthenticationReturn
+  login(username: String!, password: String!): AuthenticationReturn!
 }
 `
 

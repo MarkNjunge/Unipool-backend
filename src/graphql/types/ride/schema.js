@@ -4,37 +4,37 @@ const types = `
 # A carpool ride
 type Ride {
   # id of the ride.
-  rideId: String
+  rideId: String!
 
   # The driver of the ride.
-  driver: User
+  driver: User!
 
   # The time the ride started.
-  departureTime: Float
+  departureTime: Float!
 
   # The vehicle used during the ride.
-  vehicle: Vehicle
+  vehicle: Vehicle!
     
   # The location the ride was from.
-  startLocation: GeoLocation
+  startLocation: GeoLocation!
     
   # The location the ride was to.
-  endLocation: GeoLocation
+  endLocation: GeoLocation!
 
   # Pickups done during the ride.
-  pickUps: [Pickup]
+  pickUps: [Pickup]!
 
   # The time the ride ended.
-  arrivalTime: Float
+  arrivalTime: Float!
 
   # Whether or not the ride has been completed.
-  completed: Boolean
+  completed: Boolean!
 }
 
 # A point on the map
 type GeoLocation {
   # The address of the location from Google Maps
-  name: String
+  name: String!
   
   # Latitude
   latitude: Float!
@@ -46,7 +46,7 @@ type GeoLocation {
 # A point on the map for input
 input GeoLocationInput {
   # The address of the location from Google Maps
-  name: String
+  name: String!
   
   # Latitude
   latitude: Float!
@@ -58,16 +58,16 @@ input GeoLocationInput {
 # Details for a passenger picked up during a ride.
 type Pickup {
   # The user
-  user: User
+  user: User!
 
   # The time the user was picked up
-  time: Float
+  time: Float!
 
   # The location
-  location: GeoLocation
+  location: GeoLocation!
 
   # Whether the user has been picked up
-  completed: Boolean
+  completed: Boolean!
 }
 `
 // TODO: (mecolela) map the geolocs to actual grouped objects
@@ -77,7 +77,7 @@ type Query{
   getRide(rideId: String!): Ride
 
   # Get all the rides a user has been on
-  getRidesByUser(userId: String!): [Ride]
+  getRidesByUser(userId: String!): [Ride]!
     
   # Get all rides based on parameters.
   getAllRides(driverId: String, passengerId: String, vehicleRegNo: String, region: String, completed: Boolean): [Ride]
@@ -92,7 +92,7 @@ type Mutation{
     driverId: String!,
     vehicleRegNo: String!,
     startLocation: GeoLocationInput!
-  ): String
+  ): String!
 
   # Add a user as picked up
   addPickup(
@@ -101,13 +101,13 @@ type Mutation{
     locationName: String!
     latitude: Float!,
     longitude: Float!
-  ): String
+  ): String!
 
   # Remove a pick up from a ride
   removePickUp(
     rideId:String!,
     userId:String!
-  ): String
+  ): String!
 
   # Updates a pickup as completed
   setPickUpCompleted(
@@ -116,7 +116,7 @@ type Mutation{
     locationName: String!
     latitude: Float!,
     longitude: Float!
-  ): String
+  ): String!
 
   # Mark an ongoing ride as completed.
   markRideAsCompleted(
@@ -124,7 +124,7 @@ type Mutation{
     locationName: String!
     latitude: Float!,
     longitude: Float!
-  ): Boolean
+  ): Boolean!
 }
 `
 

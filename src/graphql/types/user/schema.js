@@ -38,7 +38,7 @@ type Query {
   getUser(userId: String!): User
 
   # Get all the users [DEV]
-  getAllUsers: [User]
+  getAllUsers: [User]!
 
 }
 `
@@ -51,9 +51,9 @@ type Mutation {
     studentNumber: Int!, 
     email: String!, 
     fullName: String!, 
-    gender: Gender,
+    gender: Gender!,
     phone :Int!
-  ): String
+  ): String!
 
   # Change a user's details
   updateUser(
@@ -61,12 +61,12 @@ type Mutation {
     fullName:String,
     gender: Gender,
     phone:Int
-  ): String
+  ): String!
   
   # Delete a User
   deleteUser(
     _id: String!
-  ): Boolean
+  ): Boolean!
 }
 `
 

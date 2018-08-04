@@ -25,9 +25,9 @@ type ScheduledRide {
 
 const query = `
 type Query {
-  getAllScheduledRides: [ScheduledRide]
+  getAllScheduledRides: [ScheduledRide]!
   
-  getScheduledRidesForUser(userId: String!): [ScheduledRide]
+  getScheduledRidesForUser(userId: String!): [ScheduledRide]!
 
   getScheduledRideById(rideId: String!): ScheduledRide
 }
@@ -35,11 +35,11 @@ type Query {
 
 const mutation = `
 type Mutation {
-  addScheduledRide(rideId: String!, userId: String!, startLocation: GeoLocationInput!, endLocation: GeoLocationInput!, depatureTime: Float!): String
+  addScheduledRide(rideId: String!, userId: String!, startLocation: GeoLocationInput!, endLocation: GeoLocationInput!, depatureTime: Float!): String!
   
-  deleteScheduledRide(rideId: String!): String
+  deleteScheduledRide(rideId: String!): String!
   
-  setScheduledRideDriver(rideId: String!, driverId: String!): String
+  setScheduledRideDriver(rideId: String!, driverId: String!): String!
 }
 `
 

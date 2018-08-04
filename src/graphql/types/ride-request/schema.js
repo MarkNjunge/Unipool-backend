@@ -4,23 +4,23 @@ const types = `
 # A request made by a user for a ride
 type RideRequest {
   # The user who requested the ride
-  user: User
+  user: User!
 
   # The location the user would like to start from
-  startLocation: GeoLocation
+  startLocation: GeoLocation!
 
   # The location the user would like to stop
-  endLocation: GeoLocation
+  endLocation: GeoLocation!
 
   # The time the ride was requested
-  requestTime: Float
+  requestTime: Float!
 }
 `
 
 const query = `
 type Query {
   # Find all requests based on the end location
-  getAllRequests: [RideRequest]
+  getAllRequests: [RideRequest]!
 
   # Find the current request made by a user
   getRequestsByUser(userId: String!): RideRequest
@@ -30,10 +30,10 @@ type Query {
 const mutation = `
 type Mutation {
   # Add a pickup request
-  addRequest(userId: String!, startLocation: GeoLocationInput!, endLocation: GeoLocationInput!): String
+  addRequest(userId: String!, startLocation: GeoLocationInput!, endLocation: GeoLocationInput!): String!
 
   # Remove a request
-  removeRequest(userId: String!): String
+  removeRequest(userId: String!): String!
 }
 `
 
