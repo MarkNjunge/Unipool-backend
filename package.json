@@ -34,7 +34,7 @@
         "graphql-tools": "^1.2.3",
         "jsonwebtoken": "^8.1.0",
         "lodash": "^4.17.4",
-        "merge-graphql-schemas": "^1.1.4",
+        "merge-graphql-schemas": "^1.5.3",
         "mongoose": "^4.11.13",
         "mosca": "^2.5.2"
     },
